@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.domain.model.DailyPrayerSchedule;
 import lombok.AllArgsConstructor;
 import okhttp3.Call;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -13,16 +12,13 @@ import org.json.JSONObject;
 @AllArgsConstructor
 public class AdhanFacade {
 
-    public static final String LATITUDE_ATTR = "latitude";
-    public static final String LONGITUDE_ATTR = "longitude";
     public static final String DATA = "data";
     public static final String TIMINGS = "timings";
-    public static final String CONTENT_TYPE = "text/plain";
     private OkHttpClient okHttpClient;
     private Gson gson;
 
-    public void getPrayerMap(String date, String latitude, String longitude) throws Exception {
-        Request request = buildRequest(date, latitude, longitude);
+    public DailyPrayerSchedule getPrayerTimes(String date, String city) throws Exception {
+        Request request = buildRequest(date, city);
         Call call = okHttpClient.newCall(request);
         Response response = call.execute();
         assert response.body() != null;
@@ -30,23 +26,21 @@ public class AdhanFacade {
         String resBody = response.body().string();
         JSONObject json = new JSONObject(resBody);
         JSONObject jsonObject = json.getJSONObject(DATA).getJSONObject(TIMINGS);
-        DailyPrayerSchedule dailyPrayerSchedule = gson.fromJson(String.valueOf(jsonObject), DailyPrayerSchedule.class);
-        System.out.println(dailyPrayerSchedule);
+        return gson.fromJson(String.valueOf(jsonObject), DailyPrayerSchedule.class);
     }
 
 
-    private Request buildRequest(String date, String latitude, String longitude) {
-        MediaType mediaType = MediaType.parse(CONTENT_TYPE);
+    private Request buildRequest(String date, String city) {
         Request request = new Request.Builder()
-                .url(buildUrl(date, latitude, longitude))
+                .url(buildUrl(date, city))
                 .get()
                 .build();
         System.out.println(request);
         return request;
     }
 
-    private String buildUrl(String date, String latitude, String longitude) {
-        return String.format("http://api.aladhan.com/v1/timings/%s?%s=%s&%s=%s",
-                date, LATITUDE_ATTR, latitude, LONGITUDE_ATTR, longitude);
+    private String buildUrl(String date, String city) {
+        return String.format("http://api.aladhan.com/v1/timingsByCity/%s?city=%s&country=US",
+                date, city);
     }
 }
