@@ -15,7 +15,6 @@ public class PrayerTimeApplication {
 		String date = "12-22-2024";
 		String city = "Bellevue";
 		DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(date, city);
-
 	}
 
 }
