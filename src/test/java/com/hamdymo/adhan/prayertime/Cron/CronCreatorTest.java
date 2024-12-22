@@ -9,8 +9,9 @@ public class CronCreatorTest {
     CronCreator cronCreator = new CronCreator();
 
     @Test
-    public void testicle5() {
+    public void test_cronjob() {
         String time = "06:14";
+        String[] command = {"",""};
         cronCreator.createCronJobString(time, null);
     }
 }
