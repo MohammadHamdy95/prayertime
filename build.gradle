@@ -13,6 +13,10 @@ java {
 	}
 }
 
+application {
+	mainClass = 'com.hamdymo.adhan.prayertime.PrayTimeApplication'
+}
+
 repositories {
 	mavenCentral()
 }
