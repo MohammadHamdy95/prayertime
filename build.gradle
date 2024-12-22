@@ -50,3 +50,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.register('run', JavaExec) {
+	dependsOn 'classes'
+	mainClass = 'com/hamdymo/adhan/prayertime/PrayerTimeApplication'
+	classpath = sourceSets.main.runtimeClasspath
+	args 'DailyScreen'
+}
