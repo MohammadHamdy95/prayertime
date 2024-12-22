@@ -13,9 +13,9 @@ java {
 	}
 }
 
-application {
-	mainClass = 'com.hamdymo.adhan.prayertime.PrayTimeApplication'
-}
+//application {
+//	mainClass = 'com.hamdymo.adhan.prayertime.PrayerTimeApplication'
+//}
 
 repositories {
 	mavenCentral()
