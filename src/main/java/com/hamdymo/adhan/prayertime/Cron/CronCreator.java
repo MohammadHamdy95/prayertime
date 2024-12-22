@@ -1,5 +1,7 @@
 package com.hamdymo.adhan.prayertime.Cron;
 
+import java.io.IOException;
+
 public class CronCreator {
 
     public String createCronJobString(String time, String[] command) {
@@ -27,4 +29,15 @@ public class CronCreator {
         }
         return root;
     }
+
+    public void removeAllCronJobs() throws Exception {
+        //first we remove all jobs from crontab
+        String[] remove = {"crontab","-r"};
+        Runtime.getRuntime().exec(remove);
+    }
+
+//    public void addCronJob(String cronJob) throws Exception {
+//        //first we remove all jobs from crontab
+//        Runtime.getRuntime().exec(remove);
+//    }
 }
