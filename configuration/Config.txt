@@ -1,3 +1,5 @@
 {
-"city":"Bellevue"
+"city":"Bellevue",
+"zip code":"98004",
+"timezone id":"America/Los_Angeles"
 }

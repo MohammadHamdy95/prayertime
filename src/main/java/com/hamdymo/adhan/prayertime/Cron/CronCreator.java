@@ -81,13 +81,6 @@ public class CronCreator {
         return "export XDG_RUNTIME_DIR=\"/run/user/1000\" &&";
     }
 
-    public void addCronJobToCronTab(String cronString) throws IOException {
-        String commands = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
-        String test = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
-        System.out.printf("we are rnning %s", test);
-//        Runtime.getRuntime().exec(test);
-    }
-
     public String getGradleLocation() throws IOException {
         Runtime rt = Runtime.getRuntime();
         String[] commands = {"which","gradle"};
@@ -96,4 +89,19 @@ public class CronCreator {
                 InputStreamReader(proc.getInputStream()));
         return stdInput.readLine();
     }
+
+    public String getPlayLocation() throws IOException {
+        Runtime rt = Runtime.getRuntime();
+        String[] commands = {"which","play"};
+        Process proc = rt.exec(commands);
+        BufferedReader stdInput = new BufferedReader(new
+                InputStreamReader(proc.getInputStream()));
+        return stdInput.readLine();
+    }
+
+//    public String createSpeakerCron(String hour, String minute, String command) {
+//        String test = String.format("""
+//                %s %s * * * %s %s
+//                """, minute, hour, getExportCommand(),command);
+//    }
 }

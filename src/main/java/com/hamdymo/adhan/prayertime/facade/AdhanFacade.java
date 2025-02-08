@@ -14,6 +14,7 @@ public class AdhanFacade {
 
     public static final String DATA = "data";
     public static final String TIMINGS = "timings";
+    public static final String DATE = "date";
     private OkHttpClient okHttpClient;
     private Gson gson;
 
@@ -25,8 +26,9 @@ public class AdhanFacade {
 
         String resBody = response.body().string();
         JSONObject json = new JSONObject(resBody);
-        JSONObject jsonObject = json.getJSONObject(DATA).getJSONObject(TIMINGS);
-        return gson.fromJson(String.valueOf(jsonObject), DailyPrayerSchedule.class);
+        JSONObject data = json.getJSONObject(DATA);
+        JSONObject timings = data.getJSONObject(TIMINGS);
+        return gson.fromJson(String.valueOf(timings), DailyPrayerSchedule.class);
     }
 
 
@@ -35,7 +37,6 @@ public class AdhanFacade {
                 .url(buildUrl(date, city))
                 .get()
                 .build();
-        System.out.println(request);
         return request;
     }
 

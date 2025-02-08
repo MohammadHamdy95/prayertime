@@ -1,10 +1,12 @@
 package com.hamdymo.adhan.prayertime;
 
 import com.hamdymo.adhan.prayertime.Cron.CronCreator;
+import com.hamdymo.adhan.prayertime.Cron.PrayerCron;
 import com.hamdymo.adhan.prayertime.domain.model.Config;
 import com.hamdymo.adhan.prayertime.domain.model.DailyPrayerSchedule;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
+import com.hamdymo.adhan.prayertime.logic.DateFunctions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -19,10 +21,15 @@ public class PrayerTimeApplication {
 		AdhanFacade adhanFacade = apc.getBean(AdhanFacade.class);
 		CronCreator cronCreator = apc.getBean(CronCreator.class);
 		FileFacade fileFacade = apc.getBean(FileFacade.class);
+		DateFunctions dateFunctions = apc.getBean(DateFunctions.class);
+		PrayerCron prayerCron = apc.getBean(PrayerCron.class);
 //		cronCreator.createCronToRunProgramOnceAt1159am();
-		Config config = fileFacade.getConfigObject();
-		String city = config.getCity();
-		System.out.println(city);
+//		System.out.println(fileFacade.getConfigFile());
+//		DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes("01-01-2025", "Bellevue");
+//		String asrTime = prayerTimes.getAsrTime();
+//		System.out.println(asrTime);
+		prayerCron.fajrCron("12:12");
+
 
 
 //		fileFacade.viewFile(FILE_NAME);

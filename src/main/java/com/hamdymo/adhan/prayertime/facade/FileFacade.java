@@ -72,7 +72,18 @@ public class FileFacade {
         Files.createFile(path);
     }
 
-    public Config getConfigObject() {
+    public String getConfigCity() {
+        //Zip code takes priority over city name.
+        try (FileReader reader = new FileReader(getProjectPatch(CONFIG_TXT))) {
+            Config config = gson.fromJson(reader, Config.class);
+            return config.getZipCode() != null ? config.getZipCode() : config.getCity();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Config getConfigFile() {
         try (FileReader reader = new FileReader(getProjectPatch(CONFIG_TXT))) {
             return gson.fromJson(reader, Config.class);
         } catch (IOException e) {

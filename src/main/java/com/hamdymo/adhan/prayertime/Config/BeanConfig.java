@@ -2,8 +2,10 @@ package com.hamdymo.adhan.prayertime.Config;
 
 import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.Cron.CronCreator;
+import com.hamdymo.adhan.prayertime.Cron.PrayerCron;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
+import com.hamdymo.adhan.prayertime.logic.DateFunctions;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,5 +39,15 @@ public class BeanConfig {
     @Bean
     public FileFacade fileFacade() {
         return new FileFacade(gson());
+    }
+
+    @Bean
+    public DateFunctions dateFunctions() {
+        return new DateFunctions(fileFacade());
+    }
+
+    @Bean
+    public PrayerCron prayerCron() {
+        return new PrayerCron(cronCreator(), adhanFacade(), fileFacade(), dateFunctions());
     }
 }
