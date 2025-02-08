@@ -1,6 +1,6 @@
 Prerequisites
 1. You must have gradle installed
-2. You need to have your headless setup login automatically, for some reason, speaker don't work if you are not logged in:
+2. You need to have your headless setup login automatically, for some reason, speakers don't work if you are not logged into a user.  This is pretty annoying as a headless user but this is how you do it:
    try:
   sudo nano /lib/systemd/system/getty@.service  
   And change:
