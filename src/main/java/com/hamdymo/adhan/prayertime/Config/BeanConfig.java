@@ -1,8 +1,10 @@
 package com.hamdymo.adhan.prayertime.Config;
 
 import com.google.gson.Gson;
+import com.hamdymo.adhan.prayertime.Controller.PrayerApplicationController;
 import com.hamdymo.adhan.prayertime.Cron.CronCreator;
 import com.hamdymo.adhan.prayertime.Cron.PrayerCron;
+import com.hamdymo.adhan.prayertime.PrayerTimeApplication;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
@@ -49,5 +51,10 @@ public class BeanConfig {
     @Bean
     public PrayerCron prayerCron() {
         return new PrayerCron(cronCreator(), adhanFacade(), fileFacade(), dateFunctions());
+    }
+
+    @Bean
+    public PrayerApplicationController prayerApplicationController() {
+        return new PrayerApplicationController(fileFacade(), adhanFacade(), cronCreator(), prayerCron());
     }
 }

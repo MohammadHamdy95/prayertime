@@ -4,11 +4,8 @@ import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.domain.model.Config;
 import lombok.AllArgsConstructor;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,7 +24,7 @@ public class FileFacade {
      * @throws IOException
      */
     public void viewFile(String fileName) throws Exception {
-        String pathString = getProjectPatch(fileName);
+        String pathString = getFilenamePath(fileName);
         Path path = Paths.get(pathString);
         try {
             List<String> file = Files.readAllLines(path);
@@ -39,7 +36,7 @@ public class FileFacade {
         }
     }
 
-    public String getProjectPatch(String fileName) {
+    public String getFilenamePath(String fileName) {
         String root = System.getProperty("user.dir");
         String os = System.getProperty("os.name");
         String fileDir = String.format("/configuration/%s", fileName);
@@ -51,7 +48,7 @@ public class FileFacade {
     }
 
     public void addLineToFile(String textToAppend, String file) {
-        String filePath = getProjectPatch(file);
+        String filePath = getFilenamePath(file);
         try {
             Files.write(Paths.get(filePath), textToAppend.getBytes(), StandardOpenOption.APPEND);
             Files.write(Paths.get(filePath), System.lineSeparator().getBytes(), StandardOpenOption.APPEND); // Add newline
@@ -61,20 +58,20 @@ public class FileFacade {
     }
 
     public void deleteFile(String fileName) throws IOException {
-        String pathString = getProjectPatch(fileName);
+        String pathString = getFilenamePath(fileName);
         Path path = Paths.get(pathString);
         Files.deleteIfExists(path);
     }
 
     public void createFile(String fileName) throws IOException {
-        String pathString = getProjectPatch(fileName);
+        String pathString = getFilenamePath(fileName);
         Path path = Paths.get(pathString);
         Files.createFile(path);
     }
 
     public String getConfigCity() {
         //Zip code takes priority over city name.
-        try (FileReader reader = new FileReader(getProjectPatch(CONFIG_TXT))) {
+        try (FileReader reader = new FileReader(getFilenamePath(CONFIG_TXT))) {
             Config config = gson.fromJson(reader, Config.class);
             return config.getZipCode() != null ? config.getZipCode() : config.getCity();
         } catch (IOException e) {
@@ -84,7 +81,7 @@ public class FileFacade {
     }
 
     public Config getConfigFile() {
-        try (FileReader reader = new FileReader(getProjectPatch(CONFIG_TXT))) {
+        try (FileReader reader = new FileReader(getFilenamePath(CONFIG_TXT))) {
             return gson.fromJson(reader, Config.class);
         } catch (IOException e) {
             e.printStackTrace();
