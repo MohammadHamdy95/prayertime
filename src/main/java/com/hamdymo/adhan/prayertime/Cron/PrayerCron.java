@@ -33,10 +33,18 @@ public class PrayerCron {
         createPrayerCron(prayerTimes.getIshaTime(), false));
     }
 
+    public List<String> prayersCronCreatorTest() throws Exception {
+        String city = fileFacade.getConfigCity();
+        String date = dateFunctions.getDateTomorrow();
+        DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
+        return Arrays.asList(
+                createPrayerCron(prayerTimes.getFajrTime(), true));
+    }
+
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
         String hour = time.substring(0,2);
         String minute = time.substring(3);
-        String timings = createTimings(minute, hour);
+        String timings = createTestTimings();
         String exportCommand = getExportCommand();
         String playLocation = getPlayLocation();
         String athanDirectory = getAthanDirectory(isFajr);
@@ -51,6 +59,10 @@ public class PrayerCron {
 
     private String createTimings(String minute, String hour) {
         return String.format("%s %s * * *", minute, hour);
+    }
+
+    private String createTestTimings() {
+        return "* * * * *";
     }
 
     private String getAthanDirectory(boolean isFajr) {
