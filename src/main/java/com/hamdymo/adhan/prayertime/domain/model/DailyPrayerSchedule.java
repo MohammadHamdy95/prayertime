@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DailyPrayerSchedule {
 
+    /**
+     * Looks like "05:57";
+     */
     @SerializedName(value = "Fajr")
     private String fajrTime;
 

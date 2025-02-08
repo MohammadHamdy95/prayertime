@@ -4,6 +4,8 @@ import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import lombok.AllArgsConstructor;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
 public class DateFunctions {
@@ -26,5 +28,31 @@ public class DateFunctions {
         return String.format("%d-%d-%d", day, month, year);
     }
 
-//    private addMinutesTo
+    /**
+     * @param hourMinute "05:57"
+     * @return hour minute shown above with a designated amount of minutes to add to it.
+     */
+    public String addMinutesToHourMinuteString(String hourMinute, int minutesToAdd) {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM-dd-yyyy HH:mm:ss");
+        String sampleDate = "01-21-1995 11:18:00";
+        DateTime dateTime = formatter.parseDateTime(sampleDate);
+        dateTime.getMillisOfDay();
+        return null;
+    }
+
+    /**
+     * @param date give MM-dd-yyyy HH:mm:ss, I will add custom hours and minutes to it.
+     * @param hoursMinutes give something like "05:57"
+     * @return
+     */
+    public String setTimeOfDayToString(String date, String hoursMinutes) {
+        String cleanHourMinuteSeconds = addSecondsToHours(hoursMinutes);
+        String test = date.substring(0,12);
+        System.out.println(test);
+        return null;
+    }
+
+    private String addSecondsToHours(String hoursMinutes) {
+        return hoursMinutes+":00";
+    }
 }

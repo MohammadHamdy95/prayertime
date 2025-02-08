@@ -6,17 +6,17 @@ import lombok.Data;
 @Data
 public class IqamahOffset {
     @SerializedName(value = "Fajr Iqamah Offset")
-    private String fajrIqamahOffset;
+    private int fajrIqamahOffset;
 
     @SerializedName(value = "Dhuhr Iqamah Offset")
-    private String dhurIqamahOffset;
+    private int dhurIqamahOffset;
 
     @SerializedName(value = "Asr Iqamah Offset")
-    private String asrTimeIqamahOffset;
+    private int asrTimeIqamahOffset;
 
     @SerializedName(value = "Maghrib Iqamah Offset")
-    private String maghribIqamahOffset;
+    private int maghribIqamahOffset;
 
     @SerializedName(value = "Isha Iqamah Offset")
-    private String ishaIqamahOffset;
+    private int ishaIqamahOffset;
 }
