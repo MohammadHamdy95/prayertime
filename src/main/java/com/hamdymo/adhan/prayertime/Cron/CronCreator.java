@@ -1,17 +1,21 @@
 package com.hamdymo.adhan.prayertime.Cron;
 
 import java.io.IOException;
+import java.util.List;
 
 public class CronCreator {
 
-    public String createCronJobString(String minute, String hour, String[] command) {
-        return null;
+    public String createCronJobString(String hour, String minute, String[] command) {
+        return String.format("%s %s * * * ", hour, minute);
     }
 
     public String createCronToRunProgramOnceAt12am() {
-        String root = System.getProperty("user.dir");
+        String root = getProjectPatch();
         System.out.println(root);
-        String cronString = "0 0 * * * ";
+        String cronString = "23 59 * * * ";
+        String finalProject = cronString +  root;
+        System.out.println(finalProject);
+        System.out.println();
         return null;
     }
 
@@ -22,6 +26,12 @@ public class CronCreator {
         return String.format("""
                 %s %s * * * play %s
                 """, minute, hour, fajrDirectory);
+    }
+
+    public String createStandardPrayerCronString(String hour, String minute) {
+        String athanDirectory = getAthanDirectory(false);
+        System.out.println();
+        return null;
     }
 
     public String getAthanDirectory(boolean isFajr) {
@@ -39,6 +49,15 @@ public class CronCreator {
         return root;
     }
 
+    public String getProjectPatch() {
+        String root = System.getProperty("user.dir");
+        String os = System.getProperty("os.name");
+        if (os.equals("Mac OS X")) {
+            root = "/home/modev/workspace/prayertime";
+        }
+        return root;
+    }
+
     public void removeAllCronJobs() throws Exception {
         //first we remove all jobs from crontab
         String[] remove = {"crontab","-r"};
@@ -51,12 +70,20 @@ public class CronCreator {
 //    }
 
     public String createTestCronString(String time) {
-        String export = "export XDG_RUNTIME_DIR=\"/run/user/1000\" &&";
         String minute = time.substring(0,2);
         String hour = time.substring(3);
         String fajrDirectory = getAthanDirectory(true);
         return String.format("""
                 * * * * * %s /usr/bin/play %s
-                """, export,fajrDirectory);
+                """, getExportCommand(),fajrDirectory);
+    }
+
+    private String getExportCommand() {
+        return "export XDG_RUNTIME_DIR=\"/run/user/1000\" &&";
+    }
+
+    private void addCronJobToCronTab(String cronString) throws IOException {
+        String commands = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
+        Runtime.getRuntime().exec(commands);
     }
 }
