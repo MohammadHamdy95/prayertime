@@ -40,7 +40,7 @@ public class PrayerCron {
         String timings = createTimings(hour, minute);
         String exportCommand = getExportCommand();
         String playLocation = getPlayLocation();
-        String athanDirectory = getAthanDirectory(true);
+        String athanDirectory = getAthanDirectory(isFajr);
         return String.format("""
                 %s %s && %s %s
                 """, timings, exportCommand, playLocation, athanDirectory);

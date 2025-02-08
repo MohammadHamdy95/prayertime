@@ -30,7 +30,7 @@ public class PrayerTimeApplication {
 //		System.out.println(asrTime);
 //		prayerCron.fajrCron("12:12");
 
-		System.out.println(prayerCron.prayersCronCreator().get(0));
+		System.out.println(prayerCron.prayersCronCreator().get(1));
 
 
 //		fileFacade.viewFile(FILE_NAME);
