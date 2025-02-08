@@ -18,10 +18,13 @@ public class CronCreator {
     }
 
     public void createCronjobFileToCronjob() throws IOException {
-        System.out.println(fileFacade.getFilenamePath(CRONTAB_TXT));
+        Runtime rt = Runtime.getRuntime();
         String[] commands = {"crontab", "<", fileFacade.getFilenamePath(CRONTAB_TXT)};
+        Process proc = rt.exec(commands);
+        BufferedReader stdInput = new BufferedReader(new
+                InputStreamReader(proc.getInputStream()));
+        System.out.println(stdInput.readLine());
         System.out.printf("%s %s %s",commands[0],commands[1],commands[2]);
-        Runtime.getRuntime().exec(commands);
     }
 
     public void addRerunCronjob() throws IOException {
