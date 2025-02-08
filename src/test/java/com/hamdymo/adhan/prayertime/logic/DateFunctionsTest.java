@@ -28,9 +28,9 @@ class DateFunctionsTest {
     @Test
     void addMinutesToHourMinuteString() {
         String test = "14:30";
-        int howMuchToAdd = 25;
+        int minutesToAdd = 25;
 
-        String result = dateFunctions.addMinutesToHourMinuteString(test, howMuchToAdd);
+        String result = dateFunctions.addMinutesToHourMinuteString(test, minutesToAdd);
         assertEquals("14:55", result);
     }
 
