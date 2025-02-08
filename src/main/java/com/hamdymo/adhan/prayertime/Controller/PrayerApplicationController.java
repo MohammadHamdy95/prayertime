@@ -30,7 +30,7 @@ public class PrayerApplicationController {
         }
 
         cronCreator.addRerunCronjob();
-        cronCreator.testingCronJobs();
+        cronCreator.createCronjobFileToCronjob();
 
 
 

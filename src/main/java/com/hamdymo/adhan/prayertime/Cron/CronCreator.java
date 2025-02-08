@@ -25,26 +25,26 @@ public class CronCreator {
         System.out.printf("%s %s %s",commands[0],commands[1],commands[2]);
     }
 
-    public void testingCronJobs() throws IOException, InterruptedException {
-        Runtime runtime = Runtime.getRuntime();
-        String[] commands = {"crontab", "-e"};
-
-        Process proc = runtime.exec(commands);
-
-        InputStream stdIn = proc.getInputStream();
-        InputStreamReader isr = new InputStreamReader(stdIn);
-        BufferedReader br = new BufferedReader(isr);
-
-        String line = null;
-        System.out.println("<OUTPUT>");
-
-        while ((line = br.readLine()) != null)
-            System.out.println(line);
-
-        System.out.println("</OUTPUT>");
-        int exitVal = proc.waitFor();
-        System.out.println("Process exitValue: " + exitVal);
-    }
+//    public void testingCronJobs() throws IOException, InterruptedException {
+//        Runtime runtime = Runtime.getRuntime();
+//        String[] commands = {"crontab", "-e"};
+//
+//        Process proc = runtime.exec(commands);
+//
+//        InputStream stdIn = proc.getInputStream();
+//        InputStreamReader isr = new InputStreamReader(stdIn);
+//        BufferedReader br = new BufferedReader(isr);
+//
+//        String line = null;
+//        System.out.println("<OUTPUT>");
+//
+//        while ((line = br.readLine()) != null)
+//            System.out.println(line);
+//
+//        System.out.println("</OUTPUT>");
+//        int exitVal = proc.waitFor();
+//        System.out.println("Process exitValue: " + exitVal);
+//    }
 
     public void addRerunCronjob() throws IOException {
         String test = String.format("""
