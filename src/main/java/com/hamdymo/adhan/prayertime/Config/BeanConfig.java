@@ -33,7 +33,7 @@ public class BeanConfig {
 
     @Bean
     public CronCreator cronCreator() {
-        return new CronCreator();
+        return new CronCreator(fileFacade());
     }
 
     @Bean

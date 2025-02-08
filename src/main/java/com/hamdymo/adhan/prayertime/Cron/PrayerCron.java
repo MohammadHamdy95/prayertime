@@ -21,7 +21,6 @@ public class PrayerCron {
     private FileFacade fileFacade;
     private DateFunctions dateFunctions;
 
-
     public List<String> prayersCronCreator() throws Exception {
         String city = fileFacade.getConfigCity();
         String date = dateFunctions.getDateTomorrow();
