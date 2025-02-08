@@ -1,10 +1,10 @@
-05 57 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/fajr.mp3
+57 05 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/fajr.mp3
 
-12 23 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
+23 12 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
 
-14 55 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
+55 14 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
 
-17 23 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
+23 17 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
 
-18 50 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
+50 18 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
 

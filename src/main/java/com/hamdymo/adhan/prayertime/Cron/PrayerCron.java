@@ -34,9 +34,9 @@ public class PrayerCron {
     }
 
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
-        String minute = time.substring(0,2);
-        String hour = time.substring(3);
-        String timings = createTimings(hour, minute);
+        String hour = time.substring(0,2);
+        String minute = time.substring(3);
+        String timings = createTimings(minute, hour);
         String exportCommand = getExportCommand();
         String playLocation = getPlayLocation();
         String athanDirectory = getAthanDirectory(isFajr);
@@ -49,7 +49,7 @@ public class PrayerCron {
         return "export XDG_RUNTIME_DIR=\"/run/user/1000\"";
     }
 
-    private String createTimings(String hour, String minute) {
+    private String createTimings(String minute, String hour) {
         return String.format("%s %s * * *", minute, hour);
     }
 
