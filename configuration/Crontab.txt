@@ -8,3 +8,5 @@
 
 50 18 * * * export XDG_RUNTIME_DIR="/run/user/1000" && null /home/modev/workspace/prayertime/assets/athaan/athaan.mp3
 
+57 11 * * * cd /Users/mohamdy/Documents/Dev/Personal/prayertime && /opt/homebrew/bin/gradle run
+

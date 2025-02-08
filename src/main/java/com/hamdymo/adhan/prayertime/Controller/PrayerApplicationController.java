@@ -29,6 +29,7 @@ public class PrayerApplicationController {
             cronCreator.addCronJobToContabFile(cron);
         }
 
+        cronCreator.addRerunCronjob();
         cronCreator.createCronjobFileToCronjob();
 
 
