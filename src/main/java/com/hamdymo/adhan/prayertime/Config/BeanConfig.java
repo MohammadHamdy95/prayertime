@@ -54,6 +54,6 @@ public class BeanConfig {
 
     @Bean
     public PrayerApplicationController prayerApplicationController() {
-        return new PrayerApplicationController(fileFacade(), adhanFacade(), cronCreator(), prayerCron());
+        return new PrayerApplicationController(fileFacade(), cronCreator(), prayerCron());
     }
 }

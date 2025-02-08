@@ -53,10 +53,6 @@ public class PrayerCron {
 
     private String getAthanDirectory(boolean isFajr) {
         String root = System.getProperty("user.dir");
-        String os = System.getProperty("os.name");
-        if (os.equals("Mac OS X")) {
-            root = "/home/modev/workspace/prayertime";
-        }
         root = root + "/assets/athaan";
         if (isFajr) {
             root = root + "/fajr.mp3";
