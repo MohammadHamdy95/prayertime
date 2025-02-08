@@ -6,7 +6,6 @@ import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import lombok.AllArgsConstructor;
 
-import java.io.IOException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -29,6 +28,8 @@ public class PrayerApplicationController {
         for (String cron : crons) {
             cronCreator.addCronJobToContabFile(cron);
         }
+
+        cronCreator.createCronjobFileToCronjob();
 
 
 

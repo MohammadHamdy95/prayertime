@@ -15,7 +15,7 @@ public class CronCreator {
         fileFacade.addLineToFile(cron, CRONTAB_TXT);
     }
 
-    public void createCronJob() throws IOException {
+    public void createCronjobFileToCronjob() throws IOException {
         Runtime rt = Runtime.getRuntime();
         String[] commands = {"crontab", "<", fileFacade.getFilenamePath(CRONTAB_TXT)};
         Process proc = rt.exec(commands);
