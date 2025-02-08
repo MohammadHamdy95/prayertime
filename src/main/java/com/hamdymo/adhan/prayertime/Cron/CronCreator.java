@@ -4,9 +4,14 @@ import java.io.IOException;
 
 public class CronCreator {
 
-    public String createCronJobString(String time, String[] command) {
-        String minute = time.substring(0,2);
-        String hour = time.substring(3);
+    public String createCronJobString(String minute, String hour, String[] command) {
+        return null;
+    }
+
+    public String createCronToRunProgramOnceAt12am() {
+        String root = System.getProperty("user.dir");
+        System.out.println(root);
+        String cronString = "0 0 * * * ";
         return null;
     }
 

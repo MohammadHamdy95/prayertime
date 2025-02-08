@@ -17,6 +17,7 @@ public class PrayerTimeApplication {
 		String date = "12-22-2024";
 		String city = "Bellevue";
 		cronCreator.removeAllCronJobs();
+		cronCreator.createCronToRunProgramOnceAt12am();
 //		DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(date, city);
 //		System.out.println(dailyPrayerSchedule);
 //		System.out.println(cronCreator.createTestCronString(dailyPrayerSchedule.getFajrTime()));
