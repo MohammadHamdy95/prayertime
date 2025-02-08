@@ -26,4 +26,14 @@ public class DailyPrayerSchedule {
 
     @SerializedName(value = "Isha")
     private String ishaTime;
+
+    private String fajrTimeIqamah;
+
+    private String dhurTimeIqamah;
+
+    private String asrTimeIqamah;
+
+    private String maghribTimeIqamah;
+
+    private String ishaTimeIqamah;
 }
