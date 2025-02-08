@@ -14,14 +14,12 @@ public class IqamahDecorator {
     private FileFacade fileFacade;
 
     public DailyPrayerSchedule addIqamahTimesToSchedule(DailyPrayerSchedule dailyPrayerSchedule) {
-        getIqamahConfig();
+        IqamahOffset iqamahConfig = getIqamahConfig();
         return null;
     }
 
     private IqamahOffset getIqamahConfig() {
-        IqamahOffset iqamahOffsetConfig = fileFacade.getIqamahOffsetConfiig();
-        System.out.println(iqamahOffsetConfig);
-        return null;
+        return fileFacade.getIqamahOffsetConfiig();
     }
 
 }
