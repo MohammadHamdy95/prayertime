@@ -24,10 +24,10 @@ public class PrayerApplicationController {
         fileFacade.createFile(CRONTAB_TXT);
 
         //Next we want to build all the cronjobs
-        List<String> crons = prayerCron.prayersCronCreator();
+        List<String> adhanCrons = prayerCron.prayersCronCreator();
 
         //Now we want to add each cronjob
-        for (String cron : crons) {
+        for (String cron : adhanCrons) {
             cronCreator.addCronJobToContabFile(cron);
         }
 
