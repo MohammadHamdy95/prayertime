@@ -86,6 +86,6 @@ public class CronCreator {
         String commands = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
         String test = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
         System.out.printf("we are rnning %s", test);
-        Runtime.getRuntime().exec(test);
+//        Runtime.getRuntime().exec(test);
     }
 }
