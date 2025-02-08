@@ -1,13 +1,15 @@
 package com.hamdymo.adhan.prayertime.domain.model;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+@Data
 public class IqamahOffset {
     @SerializedName(value = "Fajr Iqamah Offset")
     private String fajrIqamahOffset;
 
     @SerializedName(value = "Dhuhr Iqamah Offset")
-    private String dhurIqamahOffet;
+    private String dhurIqamahOffset;
 
     @SerializedName(value = "Asr Iqamah Offset")
     private String asrTimeIqamahOffset;
