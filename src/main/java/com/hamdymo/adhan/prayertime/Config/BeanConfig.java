@@ -3,6 +3,7 @@ package com.hamdymo.adhan.prayertime.Config;
 import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.Cron.CronCreator;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
+import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,5 +32,10 @@ public class BeanConfig {
     @Bean
     public CronCreator cronCreator() {
         return new CronCreator();
+    }
+
+    @Bean
+    public FileFacade fileFacade() {
+        return new FileFacade(gson());
     }
 }

@@ -1,22 +1,21 @@
 package com.hamdymo.adhan.prayertime.Cron;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class CronCreator {
 
-    public String createCronJobString(String hour, String minute, String[] command) {
-        return String.format("%s %s * * * ", hour, minute);
+    public String createCronJobString(String hour, String minute, String command) {
+        return String.format("%s %s * * * %s", minute, hour, command);
     }
 
-    public String createCronToRunProgramOnceAt12am() {
-        String root = getProjectPatch();
-        System.out.println(root);
-        String cronString = "23 59 * * * ";
-        String finalProject = cronString +  root;
-        System.out.println(finalProject);
-        System.out.println();
-        return null;
+    public String createCronToRunProgramOnceAt1159am() throws IOException {
+        String gradleCommand =  String.format("%s run",getGradleLocation());
+        String cronJob = createCronJobString("11", "59", gradleCommand);
+        System.out.println(cronJob);
+        return cronJob;
     }
 
     public String createFajrCronString(String time) {
@@ -87,5 +86,14 @@ public class CronCreator {
         String test = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
         System.out.printf("we are rnning %s", test);
 //        Runtime.getRuntime().exec(test);
+    }
+
+    public String getGradleLocation() throws IOException {
+        Runtime rt = Runtime.getRuntime();
+        String[] commands = {"which","gradle"};
+        Process proc = rt.exec(commands);
+        BufferedReader stdInput = new BufferedReader(new
+                InputStreamReader(proc.getInputStream()));
+        return stdInput.readLine();
     }
 }
