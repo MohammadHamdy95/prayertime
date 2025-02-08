@@ -31,6 +31,7 @@ public class PrayerApplicationController {
 
         cronCreator.addRerunCronjob();
         cronCreator.createCrontabFromFile();
+        fileFacade.deleteFile(CRONTAB_TXT);
 
 
     }
