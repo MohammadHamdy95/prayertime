@@ -27,7 +27,7 @@ public class CronCreator {
 
     public void testingCronJobs() throws IOException, InterruptedException {
         Runtime runtime = Runtime.getRuntime();
-        String[] commands = {"system.exe", "-get t"};
+        String[] commands = {"crontab", "-e"};
 
         Process proc = runtime.exec(commands);
 
