@@ -15,7 +15,12 @@ public class IqamahDecorator {
 
     public DailyPrayerSchedule addIqamahTimesToSchedule(DailyPrayerSchedule dailyPrayerSchedule) {
         IqamahOffset iqamahConfig = getIqamahConfig();
-        return null;
+        dailyPrayerSchedule.setFajrTimeIqamah(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getFajrTime(), iqamahConfig.getFajrIqamahOffset()));
+        dailyPrayerSchedule.setDhurTimeIqamah(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getDhurTime(), iqamahConfig.getDhurIqamahOffset()));
+        dailyPrayerSchedule.setAsrTimeIqamah(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getAsrTime(), iqamahConfig.getAsrTimeIqamahOffset()));
+        dailyPrayerSchedule.setMaghribTimeIqamah(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getMaghribTime(), iqamahConfig.getMaghribIqamahOffset()));
+        dailyPrayerSchedule.setIshaTimeIqamah(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getIshaTime(), iqamahConfig.getIshaIqamahOffset()));
+        return dailyPrayerSchedule;
     }
 
     private IqamahOffset getIqamahConfig() {
