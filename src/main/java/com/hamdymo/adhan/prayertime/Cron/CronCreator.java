@@ -20,7 +20,7 @@ public class CronCreator {
 
     public void createCronjobFileToCronjob() throws IOException {
         Runtime rt = Runtime.getRuntime();
-        String[] commands = {"crontab", "<", fileFacade.getFilenamePath(CRONTAB_TXT)};
+        String[] commands = {"/usr/bin/crontab", "<", fileFacade.getFilenamePath(CRONTAB_TXT)};
         Process proc = rt.exec(commands);
         System.out.printf("%s %s %s",commands[0],commands[1],commands[2]);
     }
