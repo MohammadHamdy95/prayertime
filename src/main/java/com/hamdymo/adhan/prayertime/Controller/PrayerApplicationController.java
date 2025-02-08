@@ -8,11 +8,13 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
+/**
+ * This is the controller layer of PrayerApplicationController.
+ */
 @AllArgsConstructor
 public class PrayerApplicationController {
-    public static final String CRONTAB_TXT = "Crontab.txt";
+    private static final String CRONTAB_TXT = "Crontab.txt";
     private FileFacade fileFacade;
-    private AdhanFacade adhanFacade;
     private CronCreator cronCreator;
     private PrayerCron prayerCron;
 
@@ -32,7 +34,5 @@ public class PrayerApplicationController {
         cronCreator.addRerunCronjob();
         cronCreator.createCrontabFromFile();
         fileFacade.deleteFile(CRONTAB_TXT);
-
-
     }
 }

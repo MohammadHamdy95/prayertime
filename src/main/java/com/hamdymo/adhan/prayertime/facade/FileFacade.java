@@ -38,11 +38,7 @@ public class FileFacade {
 
     public String getFilenamePath(String fileName) {
         String root = System.getProperty("user.dir");
-        String os = System.getProperty("os.name");
         String fileDir = String.format("/configuration/%s", fileName);
-//        if (os.equals("Mac OS X")) {
-//            root = "/home/modev/workspace/prayertime";
-//        }
         root = root + fileDir;
         return root;
     }

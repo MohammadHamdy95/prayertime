@@ -15,10 +15,18 @@ public class CronCreator {
     private static final String CRONTAB_TXT = "Crontab.txt";
     private FileFacade fileFacade;
 
+    /**
+     * Used to add Cronjobs to the txt file.
+     * @param cron the job that we would to add to crontext file.
+     */
     public void addCronJobToContabFile(String cron) {
         fileFacade.addLineToFile(cron, CRONTAB_TXT);
     }
 
+    /**
+     * Add jod to rerun application at 11:57 pm local time, to reset cronjobs and create new ones
+     * for the next day
+     */
     public void addRerunCronjob() throws IOException {
         String test = String.format("""
                 57 11 * * * cd %s && %s run
