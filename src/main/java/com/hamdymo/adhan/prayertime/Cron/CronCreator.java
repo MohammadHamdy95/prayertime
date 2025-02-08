@@ -85,6 +85,7 @@ public class CronCreator {
     public void addCronJobToCronTab(String cronString) throws IOException {
         String commands = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
         String test = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
+        System.out.println("we are rnning test");
         Runtime.getRuntime().exec(test);
     }
 }
