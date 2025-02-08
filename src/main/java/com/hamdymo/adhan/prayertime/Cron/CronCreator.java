@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +25,7 @@ public class CronCreator {
                 """, getProjectDirectory(), getGradleLocation());
         addCronJobToContabFile(test);
     }
+
     private String getProjectDirectory() {
         String root = System.getProperty("user.dir");
         return root;
@@ -33,7 +33,7 @@ public class CronCreator {
 
     private String getGradleLocation() throws IOException {
         Runtime rt = Runtime.getRuntime();
-        String[] commands = {"which","gradle"};
+        String[] commands = {"which", "gradle"};
         Process proc = rt.exec(commands);
         BufferedReader stdInput = new BufferedReader(new
                 InputStreamReader(proc.getInputStream()));

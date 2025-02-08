@@ -14,12 +14,12 @@ import java.util.List;
 
 @AllArgsConstructor
 public class FileFacade {
-    private Gson gson;
-
     public static final String CONFIG_TXT = "Config.txt";
+    private Gson gson;
 
     /**
      * This will read any txt file in the configuration directory of the package.  This is only for printing.
+     *
      * @param fileName
      * @throws IOException
      */
@@ -43,7 +43,7 @@ public class FileFacade {
 //        if (os.equals("Mac OS X")) {
 //            root = "/home/modev/workspace/prayertime";
 //        }
-        root = root+fileDir;
+        root = root + fileDir;
         return root;
     }
 

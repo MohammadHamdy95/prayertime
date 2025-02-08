@@ -9,9 +9,7 @@ import lombok.AllArgsConstructor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,15 +24,15 @@ public class PrayerCron {
         String date = dateFunctions.getDateTomorrow();
         DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
         return Arrays.asList(
-        createPrayerCron(prayerTimes.getFajrTime(), true),
-        createPrayerCron(prayerTimes.getDhurTime(), false),
-        createPrayerCron(prayerTimes.getAsrTime(), false),
-        createPrayerCron(prayerTimes.getMaghribTime(), false),
-        createPrayerCron(prayerTimes.getIshaTime(), false));
+                createPrayerCron(prayerTimes.getFajrTime(), true),
+                createPrayerCron(prayerTimes.getDhurTime(), false),
+                createPrayerCron(prayerTimes.getAsrTime(), false),
+                createPrayerCron(prayerTimes.getMaghribTime(), false),
+                createPrayerCron(prayerTimes.getIshaTime(), false));
     }
 
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
-        String hour = time.substring(0,2);
+        String hour = time.substring(0, 2);
         String minute = time.substring(3);
         String timings = createTimings(minute, hour);
         String exportCommand = getExportCommand();
@@ -63,14 +61,14 @@ public class PrayerCron {
         if (isFajr) {
             root = root + "/fajr.mp3";
         } else {
-            root = root +"/athaan.mp3";
+            root = root + "/athaan.mp3";
         }
         return root;
     }
 
     private String getPlayLocation() throws IOException {
         Runtime rt = Runtime.getRuntime();
-        String[] commands = {"which","play"};
+        String[] commands = {"which", "play"};
         Process proc = rt.exec(commands);
         BufferedReader stdInput = new BufferedReader(new
                 InputStreamReader(proc.getInputStream()));

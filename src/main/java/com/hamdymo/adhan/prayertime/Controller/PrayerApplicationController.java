@@ -33,7 +33,5 @@ public class PrayerApplicationController {
         cronCreator.createCrontabFromFile();
 
 
-
-
     }
 }
