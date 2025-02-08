@@ -24,7 +24,7 @@ public class CronCreator {
         Process proc = rt.exec(commands2);
         BufferedReader stdInput = new BufferedReader(new
                 InputStreamReader(proc.getInputStream()));
-        System.out.println(stdInput.readLine());
+        System.out.println(stdInput.read());
         System.out.printf("%s %s %s",commands[0],commands[1],commands[2]);
     }
 
