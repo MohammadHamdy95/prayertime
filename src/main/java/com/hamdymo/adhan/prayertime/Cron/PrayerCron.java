@@ -31,7 +31,31 @@ public class PrayerCron {
                 createPrayerCron(prayerTimes.getIshaTime(), false));
     }
 
+    public List<String> IqamahCronCreator() throws Exception {
+        String city = fileFacade.getConfigCity();
+        String date = dateFunctions.getDateTomorrow();
+        DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
+        return Arrays.asList(
+                createPrayerCron(prayerTimes.getFajrTime(), true),
+                createPrayerCron(prayerTimes.getDhurTime(), false),
+                createPrayerCron(prayerTimes.getAsrTime(), false),
+                createPrayerCron(prayerTimes.getMaghribTime(), false),
+                createPrayerCron(prayerTimes.getIshaTime(), false));
+    }
+
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
+        String hour = time.substring(0, 2);
+        String minute = time.substring(3);
+        String timings = createTimings(minute, hour);
+        String exportCommand = getExportCommand();
+        String playLocation = getPlayLocation();
+        String athanDirectory = getAthanDirectory(isFajr);
+        return String.format("""
+                %s %s && %s %s
+                """, timings, exportCommand, playLocation, athanDirectory);
+    }
+
+    private String createIqamahCron(String time, boolean isFajr) throws IOException {
         String hour = time.substring(0, 2);
         String minute = time.substring(3);
         String timings = createTimings(minute, hour);
@@ -59,6 +83,13 @@ public class PrayerCron {
         } else {
             root = root + "/athaan.mp3";
         }
+        return root;
+    }
+
+    private String getIqamahDirectory(boolean isFajr) {
+        String root = System.getProperty("user.dir");
+        root = root + "/assets/athaan";
+        root = root + "/athaan.mp3";
         return root;
     }
 
