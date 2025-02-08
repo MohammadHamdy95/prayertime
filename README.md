@@ -7,5 +7,5 @@ Prerequisites
   ExecStart=-/sbin/agetty -o '-p -- \u' --noclear %I $TERM
   for:
   ExecStart=-/sbin/agetty --noissue --autologin YOURusername %I $TERM Type=idle
-3. Edit the Config file file to use your zip code or city, you don't need to add both.
+3. Edit the Config file to use your zip code or city, you don't need to add both.
 4. go to project dir and gradle run. viola!
