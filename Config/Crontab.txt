@@ -1,0 +1,1 @@
+* * * * * export XDG_RUNTIME_DIR="/run/user/1000" && /usr/bin/play /home/modev/workspace/prayertime/assets/athaan/fajr.mp3
