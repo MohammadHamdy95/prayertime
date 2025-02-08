@@ -2,6 +2,7 @@ package com.hamdymo.adhan.prayertime.facade;
 
 import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.domain.model.Config;
+import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
 import lombok.AllArgsConstructor;
 
 import java.io.FileReader;
@@ -15,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class FileFacade {
     public static final String CONFIG_TXT = "Config.txt";
+    public static final String IQAMAH_OFFSETS_TXT = "IqamahOffsets.txt";
     private Gson gson;
 
     /**
@@ -79,6 +81,15 @@ public class FileFacade {
     public Config getConfigFile() {
         try (FileReader reader = new FileReader(getFilenamePath(CONFIG_TXT))) {
             return gson.fromJson(reader, Config.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public IqamahOffset getIqamahOffsetConfiig() {
+        try (FileReader reader = new FileReader(getFilenamePath(IQAMAH_OFFSETS_TXT))) {
+            return gson.fromJson(reader, IqamahOffset.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

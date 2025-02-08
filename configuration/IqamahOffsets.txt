@@ -1,0 +1,7 @@
+{
+"Fajr Iqamah Offset":"10",
+"Dhuhr Iqamah Offset":"10",
+"Asr Iqamah Offset":"10",
+"Maghrib Iqamah Offset":"10",
+"Isha Iqamah Offset":"10"
+}

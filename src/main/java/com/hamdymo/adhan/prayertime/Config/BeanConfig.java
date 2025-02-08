@@ -7,6 +7,7 @@ import com.hamdymo.adhan.prayertime.Cron.PrayerCron;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
+import com.hamdymo.adhan.prayertime.logic.IqamahDecorator;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,5 +56,10 @@ public class BeanConfig {
     @Bean
     public PrayerApplicationController prayerApplicationController() {
         return new PrayerApplicationController(fileFacade(), cronCreator(), prayerCron());
+    }
+
+    @Bean
+    public IqamahDecorator iqamahDecorator() {
+        return new IqamahDecorator(dateFunctions(), fileFacade());
     }
 }
