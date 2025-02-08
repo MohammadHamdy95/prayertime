@@ -28,8 +28,9 @@ public class PrayerTimeApplication {
 //		DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes("01-01-2025", "Bellevue");
 //		String asrTime = prayerTimes.getAsrTime();
 //		System.out.println(asrTime);
-		prayerCron.fajrCron("12:12");
+//		prayerCron.fajrCron("12:12");
 
+		System.out.println(prayerCron.prayersCronCreator().get(0));
 
 
 //		fileFacade.viewFile(FILE_NAME);
