@@ -25,7 +25,7 @@ public class PrayerCron {
     public List<String> prayersCronCreator() throws Exception {
         String city = fileFacade.getConfigCity();
         String date = dateFunctions.getDateTomorrow();
-        DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(city, date);
+        DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
         return Arrays.asList(
         createPrayerCron(prayerTimes.getFajrTime(), true),
         createPrayerCron(prayerTimes.getDhurTime(), false),
@@ -34,7 +34,7 @@ public class PrayerCron {
         createPrayerCron(prayerTimes.getIshaTime(), false));
     }
 
-    public String createPrayerCron(String time, boolean isFajr) throws IOException {
+    private String createPrayerCron(String time, boolean isFajr) throws IOException {
         String minute = time.substring(0,2);
         String hour = time.substring(3);
         String timings = createTimings(hour, minute);
@@ -69,7 +69,7 @@ public class PrayerCron {
         return root;
     }
 
-    public String getPlayLocation() throws IOException {
+    private String getPlayLocation() throws IOException {
         Runtime rt = Runtime.getRuntime();
         String[] commands = {"which","play"};
         Process proc = rt.exec(commands);
