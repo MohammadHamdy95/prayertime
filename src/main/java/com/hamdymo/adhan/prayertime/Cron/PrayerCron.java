@@ -36,11 +36,11 @@ public class PrayerCron {
         String date = dateFunctions.getDateTomorrow();
         DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
         return Arrays.asList(
-                createPrayerCron(prayerTimes.getFajrTime(), true),
-                createPrayerCron(prayerTimes.getDhurTime(), false),
-                createPrayerCron(prayerTimes.getAsrTime(), false),
-                createPrayerCron(prayerTimes.getMaghribTime(), false),
-                createPrayerCron(prayerTimes.getIshaTime(), false));
+                createIqamahCron(prayerTimes.getFajrTime(), true),
+                createIqamahCron(prayerTimes.getDhurTime(), false),
+                createIqamahCron(prayerTimes.getAsrTime(), false),
+                createIqamahCron(prayerTimes.getMaghribTime(), false),
+                createIqamahCron(prayerTimes.getIshaTime(), false));
     }
 
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
@@ -89,7 +89,7 @@ public class PrayerCron {
     private String getIqamahDirectory(boolean isFajr) {
         String root = System.getProperty("user.dir");
         root = root + "/assets/athaan";
-        root = root + "/athaan.mp3";
+        root = root + "/iqamah.mp3";
         return root;
     }
 
