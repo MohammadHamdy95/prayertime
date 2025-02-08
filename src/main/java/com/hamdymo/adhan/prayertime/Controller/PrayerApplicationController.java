@@ -22,7 +22,7 @@ public class PrayerApplicationController {
         fileFacade.createFile(CRONTAB_TXT);
 
         //Next we want to build all the cronjobs
-        List<String> crons = prayerCron.prayersCronCreatorTest();
+        List<String> crons = prayerCron.prayersCronCreator();
 
         //Now we want to add each cronjob
         for (String cron : crons) {
