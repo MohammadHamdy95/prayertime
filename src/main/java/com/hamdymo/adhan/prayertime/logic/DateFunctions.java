@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
 public class DateFunctions {
+    public static final String SAMPLE_DATE = "01-21-1995 11:18:00";
     private FileFacade fileFacade;
 
     /**
@@ -34,10 +35,10 @@ public class DateFunctions {
      */
     public String addMinutesToHourMinuteString(String hourMinute, int minutesToAdd) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("MM-dd-yyyy HH:mm:ss");
-        String sampleDate = "01-21-1995 11:18:00";
+        String sampleDate = setTimeOfDayToString(SAMPLE_DATE, hourMinute);
         DateTime dateTime = formatter.parseDateTime(sampleDate);
-        dateTime.getMillisOfDay();
-        return null;
+        DateTime revive = dateTime.plusMinutes(minutesToAdd);
+        return String.format("%s:%s",revive.getHourOfDay(), revive.getMinuteOfHour());
     }
 
     /**
@@ -47,9 +48,7 @@ public class DateFunctions {
      */
     public String setTimeOfDayToString(String date, String hoursMinutes) {
         String cleanHourMinuteSeconds = addSecondsToHours(hoursMinutes);
-        String test = date.substring(0,12);
-        System.out.println(test);
-        return null;
+        return date.substring(0,11) + cleanHourMinuteSeconds;
     }
 
     private String addSecondsToHours(String hoursMinutes) {
