@@ -23,7 +23,6 @@ public class DateFunctions {
     }
 
     private String generateAPIDate(int day, int month, int year) {
-        String date = String.format("%d-%d-%d", day, month, year);
-        return date;
+        return String.format("%d-%d-%d", day, month, year);
     }
 }
