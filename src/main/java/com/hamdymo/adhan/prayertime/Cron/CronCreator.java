@@ -20,13 +20,6 @@ public class CronCreator {
         fileFacade.addLineToFile(cron, CRONTAB_TXT);
     }
 
-    public void createCronjobFileToCronjob() throws IOException {
-        Runtime rt = Runtime.getRuntime();
-        String[] commands = {"/usr/bin/crontab", "<", fileFacade.getFilenamePath(CRONTAB_TXT), ">>", "/home/modev/workspace/prayertime/test.txt"};
-        Process proc = rt.exec(commands);
-        System.out.printf("%s %s %s %s %s",commands[0],commands[1],commands[2], commands[3], commands[4]);
-    }
-
     public void addRerunCronjob() throws IOException {
         String test = String.format("""
                 57 11 * * * cd %s && %s run
