@@ -82,7 +82,7 @@ public class CronCreator {
         return "export XDG_RUNTIME_DIR=\"/run/user/1000\" &&";
     }
 
-    private void addCronJobToCronTab(String cronString) throws IOException {
+    public void addCronJobToCronTab(String cronString) throws IOException {
         String commands = "(crontab -l ; echo \"1 2 3 4 5 /root/bin/backup.sh\") | sort - | uniq - | crontab -";
         Runtime.getRuntime().exec(commands);
     }
