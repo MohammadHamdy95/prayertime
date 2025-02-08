@@ -24,7 +24,7 @@ public class CronCreator {
     }
 
     /**
-     * Add jod to rerun application at 11:57 pm local time, to reset cronjobs and create new ones
+     * Add job to rerun application at 11:57 pm local time, to reset cronjobs and create new ones
      * for the next day
      */
     public void addRerunCronjob() throws IOException {
