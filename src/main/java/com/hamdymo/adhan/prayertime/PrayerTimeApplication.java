@@ -19,11 +19,7 @@ public class PrayerTimeApplication {
     public static void main(String[] args) throws Exception {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
-        IqamahDecorator iqamahDecorator = apc.getBean(IqamahDecorator.class);
-        DateFunctions dateFunctions = apc.getBean(DateFunctions.class);
         prayerApplicationController.run();
-//        iqamahDecorator.addIqamahTimesToSchedule(null);
-//        dateFunctions.setTimeOfDayToString();
     }
 
 }
