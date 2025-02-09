@@ -35,6 +35,7 @@ public class PrayerCron {
         String city = fileFacade.getConfigCity();
         String date = dateFunctions.getTodaysDate();
         DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(date, city);
+        System.out.println(dailyPrayerSchedule);
         List<String> athanCrons = athanCronCreator(dailyPrayerSchedule);
         List<String> iqamahCrons = iqamahCronCreator(dailyPrayerSchedule);
         return createCrons(athanCrons, iqamahCrons);
