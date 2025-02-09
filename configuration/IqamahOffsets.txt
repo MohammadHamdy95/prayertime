@@ -3,5 +3,5 @@
 "Dhuhr Iqamah Offset":15,
 "Asr Iqamah Offset":15,
 "Maghrib Iqamah Offset":15,
-"Isha Iqamah Offset":7
+"Isha Iqamah Offset":90
 }
