@@ -14,8 +14,6 @@ import org.springframework.context.ApplicationContext;
 @EnableCaching
 public class PrayerTimeApplication {
 
-    public static final String FILE_NAME = "Crontab.txt";
-
     public static void main(String[] args) throws Exception {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
