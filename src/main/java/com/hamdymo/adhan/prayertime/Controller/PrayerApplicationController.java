@@ -28,9 +28,9 @@ public class PrayerApplicationController {
         CronSchedule adhanCrons = prayerCron.totalCronCreator();
         System.out.println(adhanCrons);
 
-//        cronCreator.addLinesToCronTabFile(adhanCrons);
-//
-//        cronCreator.createCrontabFromFile();
-//        fileFacade.deleteFile(CRONTAB_TXT);
+        cronCreator.addLinesToCronTabFile(adhanCrons);
+
+        cronCreator.createCrontabFromFile();
+        fileFacade.deleteFile(CRONTAB_TXT);
     }
 }
