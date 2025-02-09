@@ -10,6 +10,8 @@ import org.joda.time.format.DateTimeFormatter;
 @AllArgsConstructor
 public class DateFunctions {
     public static final String SAMPLE_DATE = "01-21-1995 11:18:00";
+    public static final String NUMBER = "0";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormat.forPattern("MM-dd-yyyy HH:mm:ss");
     private FileFacade fileFacade;
 
     /**
@@ -34,12 +36,11 @@ public class DateFunctions {
      * @return hour minute shown above with a designated amount of minutes to add to it.
      */
     public String addMinutesToHourMinuteString(String hourMinute, int minutesToAdd) {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM-dd-yyyy HH:mm:ss");
         String sampleDate = setTimeOfDayToString(SAMPLE_DATE, hourMinute);
-        DateTime dateTime = formatter.parseDateTime(sampleDate);
+        DateTime dateTime = FORMATTER.parseDateTime(sampleDate);
         DateTime revive = dateTime.plusMinutes(minutesToAdd);
-        String betterHour = revive.getHourOfDay() < 10 ? "0"+revive.getHourOfDay() : String.valueOf(revive.getHourOfDay());
-        String betterMinute = revive.getMinuteOfHour() < 10 ? "0"+revive.getMinuteOfHour() : String.valueOf(revive.getMinuteOfHour());
+        String betterHour = revive.getHourOfDay() < 10 ? NUMBER +revive.getHourOfDay() : String.valueOf(revive.getHourOfDay());
+        String betterMinute = revive.getMinuteOfHour() < 10 ? NUMBER +revive.getMinuteOfHour() : String.valueOf(revive.getMinuteOfHour());
 
         return String.format("%s:%s",betterHour, betterMinute);
     }
