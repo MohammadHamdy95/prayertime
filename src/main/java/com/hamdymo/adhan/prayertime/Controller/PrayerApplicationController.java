@@ -2,6 +2,7 @@ package com.hamdymo.adhan.prayertime.Controller;
 
 import com.hamdymo.adhan.prayertime.Cron.CronCreator;
 import com.hamdymo.adhan.prayertime.Cron.PrayerCron;
+import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import lombok.AllArgsConstructor;
 
@@ -23,13 +24,10 @@ public class PrayerApplicationController {
         fileFacade.createFile(CRONTAB_TXT);
 
         //Next we want to build all the cronjobs
-        List<String> adhanCrons = prayerCron.totalCronCreator();
+        CronSchedule adhanCrons = prayerCron.totalCronCreator();
         System.out.println(adhanCrons);
 
-        //Now we want to add each cronjob
-        for (String cron : adhanCrons) {
-            cronCreator.addCronJobToContabFile(cron);
-        }
+        cronCreator.addLinesToCronTabFile(adhanCrons);
 
         cronCreator.addRerunCronjob();
         cronCreator.createCrontabFromFile();

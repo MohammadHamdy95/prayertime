@@ -1,5 +1,6 @@
 package com.hamdymo.adhan.prayertime.Cron;
 
+import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import lombok.AllArgsConstructor;
 
@@ -21,6 +22,52 @@ public class CronCreator {
      */
     public void addCronJobToContabFile(String cron) {
         fileFacade.addLineToFile(cron, CRONTAB_TXT);
+    }
+
+    /**
+     * Used to add Cronjobs to the txt file.
+     * @param cronSchedule the job that we would to add to crontext file.
+     */
+    public void addLinesToCronTabFile(CronSchedule cronSchedule) {
+        // Fjar Adhan
+        fileFacade.addLineToFile("# FAJR ADHAN", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getFajrAdhan(), CRONTAB_TXT);
+
+        // Fjar Iqamah
+        fileFacade.addLineToFile("# FAJR IQAMAH", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getFajrIqamah(), CRONTAB_TXT);
+
+        //Dhuhr Adhan
+        fileFacade.addLineToFile("# DHUHR ADHAN", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getDhuhrAdhan(), CRONTAB_TXT);
+        //Dhuhr Iqamah
+        fileFacade.addLineToFile("# DHUHR IQAMAH", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getDhuhrIqamah(), CRONTAB_TXT);
+
+        //Asr Adhan
+        fileFacade.addLineToFile("# ASR ADHAN", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getAsrAdhan(), CRONTAB_TXT);
+
+        //Asr Iqamah
+        fileFacade.addLineToFile("# ASR IQAMAH", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getAsrIqamah(), CRONTAB_TXT);
+
+        //Maghrib Adhan
+        fileFacade.addLineToFile("# MAGHRIB ADHAN", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getMaghribAdhan(), CRONTAB_TXT);
+
+        //Maghrib Iqamah
+        fileFacade.addLineToFile("# MAGHRIB IQAMAH", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getMaghribIqamah(), CRONTAB_TXT);
+
+        //Isha Adhan
+        fileFacade.addLineToFile("# ISHA ADHAN", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getIshaAdhan(), CRONTAB_TXT);
+
+        //Isha Iqamah
+        fileFacade.addLineToFile("# ISHA IQAMAH", CRONTAB_TXT);
+        fileFacade.addLineToFile(cronSchedule.getIshaIqamah(), CRONTAB_TXT);
+
     }
 
     /**
