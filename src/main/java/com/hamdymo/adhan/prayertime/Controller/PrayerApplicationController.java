@@ -22,13 +22,13 @@ public class PrayerApplicationController {
         //First thing we do is delete and create a new Crontab file.
         fileFacade.deleteFile(CRONTAB_TXT);
         fileFacade.createFile(CRONTAB_TXT);
+        cronCreator.addRerunCronjob();
 
         //Next we want to build all the cronjobs
         CronSchedule adhanCrons = prayerCron.totalCronCreator();
 
         cronCreator.addLinesToCronTabFile(adhanCrons);
 
-        cronCreator.addRerunCronjob();
         cronCreator.createCrontabFromFile();
         fileFacade.deleteFile(CRONTAB_TXT);
     }

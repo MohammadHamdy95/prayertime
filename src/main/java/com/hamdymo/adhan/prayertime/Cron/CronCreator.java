@@ -98,7 +98,7 @@ public class CronCreator {
      */
     public void addRerunCronjob() throws IOException {
         String test = String.format("""
-                57 11 * * * cd %s && %s run
+                03 00 * * * cd %s && %s run
                 """, getProjectDirectory(), getGradleLocation());
         addCronJobToContabFile(test);
     }

@@ -28,8 +28,25 @@ public class DateFunctions {
         return generateAPIDate(day, month, year);
     }
 
+    /**
+     * @return String of data looks like "22-12-2024"
+     */
+    public String getTodaysDate() {
+        String timezoneId = fileFacade.getConfigFile().getTimezoneId();
+        DateTimeZone zone = DateTimeZone.forID(timezoneId);
+        DateTime dt = new DateTime(zone);
+        int day = dt.getDayOfMonth();
+        int month = dt.getMonthOfYear();
+        int year = dt.getYear();
+        return generateAPIDate(day, month, year);
+    }
+
     private String generateAPIDate(int day, int month, int year) {
         return String.format("%d-%d-%d", day, month, year);
+    }
+
+    public String getProperDate() {
+
     }
 
     /**
