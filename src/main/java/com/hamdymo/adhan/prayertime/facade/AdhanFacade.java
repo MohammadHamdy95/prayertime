@@ -15,7 +15,6 @@ public class AdhanFacade {
 
     public static final String DATA = "data";
     public static final String TIMINGS = "timings";
-    public static final String DATE = "date";
     private OkHttpClient okHttpClient;
     private Gson gson;
 
