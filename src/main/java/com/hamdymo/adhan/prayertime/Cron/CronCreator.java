@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @AllArgsConstructor
@@ -68,6 +69,27 @@ public class CronCreator {
         fileFacade.addLineToFile("# ISHA IQAMAH", CRONTAB_TXT);
         fileFacade.addLineToFile(cronSchedule.getIshaIqamah(), CRONTAB_TXT);
 
+    }
+
+    public void addLinesToCronTabFileUpdated(CronSchedule cronSchedule) {
+
+        Map<String, String> schedules = Map.of(
+                "FAJR ADHAN", cronSchedule.getFajrAdhan(),
+                "FAJR IQAMAH", cronSchedule.getFajrIqamah(),
+                "DHUHR ADHAN", cronSchedule.getDhuhrAdhan(),
+                "DHUHR IQAMAH", cronSchedule.getDhuhrIqamah(),
+                "ASR ADHAN", cronSchedule.getAsrAdhan(),
+                "ASR IQAMAH", cronSchedule.getAsrIqamah(),
+                "MAGHRIB ADHAN", cronSchedule.getMaghribAdhan(),
+                "MAGHRIB IQAMAH", cronSchedule.getMaghribIqamah(),
+                "ISHA ADHAN", cronSchedule.getIshaAdhan(),
+                "ISHA IQAMAH", cronSchedule.getIshaIqamah()
+        );
+
+        schedules.forEach((label, cron) -> {
+            fileFacade.addLineToFile("# " + label, CRONTAB_TXT);
+            fileFacade.addLineToFile(cron, CRONTAB_TXT);
+        });
     }
 
     /**
