@@ -63,7 +63,7 @@ public class PrayerCron {
                 createIqamahCron(dailyPrayerSchedule.getDhurTime(), iqamahOffset.getDhurIqamahOffset()),
                 createIqamahCron(dailyPrayerSchedule.getAsrTime(), iqamahOffset.getAsrTimeIqamahOffset()),
                 createIqamahCron(dailyPrayerSchedule.getMaghribTime(), iqamahOffset.getMaghribIqamahOffset()),
-                createIqamahCron(dailyPrayerSchedule.getIshaTime(), iqamahOffset.getMaghribIqamahOffset()));
+                createIqamahCron(dailyPrayerSchedule.getIshaTime(), iqamahOffset.getIshaIqamahOffset()));
     }
 
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
