@@ -1,5 +1,6 @@
 package com.hamdymo.adhan.prayertime.Cron;
 
+import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.domain.model.DailyPrayerSchedule;
 import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
@@ -33,13 +34,28 @@ public class PrayerCron {
                 createPrayerCron(prayerTimes.getIshaTime(), false));
     }
 
-    public List<String> totalCronCreator() throws Exception {
+    public CronSchedule totalCronCreator() throws Exception {
         String city = fileFacade.getConfigCity();
         String date = dateFunctions.getDateTomorrow();
         DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(date, city);
         List<String> athanCrons = athanCronCreator(dailyPrayerSchedule);
         List<String> iqamahCrons = iqamahCronCreator(dailyPrayerSchedule);
-        return ListUtils.union(athanCrons, iqamahCrons);
+        return createCrons(athanCrons, iqamahCrons);
+    }
+
+    private CronSchedule createCrons(List<String> athanCrons, List<String> iqamahCrons) {
+        return CronSchedule.builder()
+                .fajrAdhan(athanCrons.get(0))
+                .fajrIqamah(iqamahCrons.get(0))
+                .dhuhrAdhan(athanCrons.get(1))
+                .dhuhrIqamah(iqamahCrons.get(1))
+                .asrAdhan(athanCrons.get(2))
+                .asrIqamah(iqamahCrons.get(2))
+                .maghribAdhan(athanCrons.get(3))
+                .maghribIqamah(iqamahCrons.get(3))
+                .ishaAdhan(athanCrons.get(4))
+                .ishaIqamah(iqamahCrons.get(4))
+                .build();
     }
 
     public List<String> iqamahCronCreator(DailyPrayerSchedule dailyPrayerSchedule) throws Exception {
