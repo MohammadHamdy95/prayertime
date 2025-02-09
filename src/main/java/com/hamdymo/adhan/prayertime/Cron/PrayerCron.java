@@ -22,10 +22,7 @@ public class PrayerCron {
     private FileFacade fileFacade;
     private DateFunctions dateFunctions;
 
-    public List<String> athanCronCreator(DailyPrayerSchedule dailyPrayerSchedule) throws Exception {
-        String city = fileFacade.getConfigCity();
-        String date = dateFunctions.getDateTomorrow();
-        DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
+    public List<String> athanCronCreator(DailyPrayerSchedule prayerTimes) throws Exception {
         return Arrays.asList(
                 createPrayerCron(prayerTimes.getFajrTime(), true),
                 createPrayerCron(prayerTimes.getDhurTime(), false),
@@ -59,9 +56,7 @@ public class PrayerCron {
     }
 
     public List<String> iqamahCronCreator(DailyPrayerSchedule dailyPrayerSchedule) throws Exception {
-        String city = fileFacade.getConfigCity();
         IqamahOffset iqamahOffset = fileFacade.getIqamahOffsetConfig();
-        String date = dateFunctions.getDateTomorrow();
         return Arrays.asList(
                 createIqamahCron(dailyPrayerSchedule.getFajrTime(), iqamahOffset.getFajrIqamahOffset()),
                 createIqamahCron(dailyPrayerSchedule.getDhurTime(), iqamahOffset.getDhurIqamahOffset()),
