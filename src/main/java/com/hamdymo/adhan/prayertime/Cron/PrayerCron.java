@@ -117,7 +117,7 @@ public class PrayerCron {
     private String getIqamahDirectory() {
         String root = System.getProperty("user.dir");
         root = root + "/assets/athaan";
-        root = root + "/iqamah.mp3";
+        root = root + "/iqamah.wav";
         return root;
     }
 
