@@ -26,7 +26,7 @@ public class PrayerApplicationController {
         //Next we want to build all the cronjobs
         CronSchedule adhanCrons = prayerCron.totalCronCreator();
 
-        cronCreator.addLinesToCronTabFileUpdated(adhanCrons);
+        cronCreator.addLinesToCronTabFile(adhanCrons);
 
         cronCreator.addRerunCronjob();
         cronCreator.createCrontabFromFile();
