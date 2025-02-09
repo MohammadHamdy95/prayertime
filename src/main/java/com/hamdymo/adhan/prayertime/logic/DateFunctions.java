@@ -45,10 +45,6 @@ public class DateFunctions {
         return String.format("%d-%d-%d", day, month, year);
     }
 
-    public String getProperDate() {
-
-    }
-
     /**
      * @param hourMinute "05:57"
      * @return hour minute shown above with a designated amount of minutes to add to it.
