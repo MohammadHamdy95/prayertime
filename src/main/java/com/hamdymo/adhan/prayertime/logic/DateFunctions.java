@@ -53,23 +53,23 @@ public class DateFunctions {
         String sampleDate = setTimeOfDayToString(SAMPLE_DATE, hourMinute);
         DateTime dateTime = FORMATTER.parseDateTime(sampleDate);
         DateTime revive = dateTime.plusMinutes(minutesToAdd);
-        String betterHour = revive.getHourOfDay() < TEN ? ZERO +revive.getHourOfDay() : String.valueOf(revive.getHourOfDay());
-        String betterMinute = revive.getMinuteOfHour() < TEN ? ZERO +revive.getMinuteOfHour() : String.valueOf(revive.getMinuteOfHour());
+        String betterHour = revive.getHourOfDay() < TEN ? ZERO + revive.getHourOfDay() : String.valueOf(revive.getHourOfDay());
+        String betterMinute = revive.getMinuteOfHour() < TEN ? ZERO + revive.getMinuteOfHour() : String.valueOf(revive.getMinuteOfHour());
 
-        return String.format("%s:%s",betterHour, betterMinute);
+        return String.format("%s:%s", betterHour, betterMinute);
     }
 
     /**
-     * @param date give MM-dd-yyyy HH:mm:ss, I will add custom hours and minutes to it.
+     * @param date         give MM-dd-yyyy HH:mm:ss, I will add custom hours and minutes to it.
      * @param hoursMinutes give something like "05:57"
      * @return
      */
     public String setTimeOfDayToString(String date, String hoursMinutes) {
         String cleanHourMinuteSeconds = addSecondsToHours(hoursMinutes);
-        return date.substring(0,11) + cleanHourMinuteSeconds;
+        return date.substring(0, 11) + cleanHourMinuteSeconds;
     }
 
     private String addSecondsToHours(String hoursMinutes) {
-        return hoursMinutes+":00";
+        return hoursMinutes + ":00";
     }
 }

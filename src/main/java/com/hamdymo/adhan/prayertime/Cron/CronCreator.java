@@ -19,6 +19,7 @@ public class CronCreator {
 
     /**
      * Used to add Cronjobs to the txt file.
+     *
      * @param cron the job that we would to add to crontext file.
      */
     public void addCronJobToContabFile(String cron) {
@@ -27,6 +28,7 @@ public class CronCreator {
 
     /**
      * Used to add Cronjobs to the txt file.
+     *
      * @param cronSchedule the job that we would to add to crontext file.
      */
     public void addLinesToCronTabFile(CronSchedule cronSchedule) {

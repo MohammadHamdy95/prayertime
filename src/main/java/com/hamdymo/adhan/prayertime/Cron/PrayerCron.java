@@ -7,7 +7,6 @@ import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
 import lombok.AllArgsConstructor;
-import org.apache.commons.collections4.ListUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

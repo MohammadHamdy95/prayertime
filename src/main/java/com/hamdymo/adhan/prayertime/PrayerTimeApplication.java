@@ -1,10 +1,6 @@
 package com.hamdymo.adhan.prayertime;
 
 import com.hamdymo.adhan.prayertime.Controller.PrayerApplicationController;
-import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
-import com.hamdymo.adhan.prayertime.logic.DateFunctions;
-import com.hamdymo.adhan.prayertime.logic.IqamahDecorator;
-import lombok.Data;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;

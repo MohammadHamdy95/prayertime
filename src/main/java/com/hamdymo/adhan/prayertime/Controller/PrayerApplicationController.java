@@ -6,8 +6,6 @@ import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import lombok.AllArgsConstructor;
 
-import java.util.List;
-
 /**
  * This is the controller layer of PrayerApplicationController.
  */
