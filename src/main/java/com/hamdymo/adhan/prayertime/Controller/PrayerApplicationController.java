@@ -26,10 +26,10 @@ public class PrayerApplicationController {
 
         //Next we want to build all the cronjobs
         CronSchedule adhanCrons = prayerCron.totalCronCreator();
-
-        cronCreator.addLinesToCronTabFile(adhanCrons);
-
-        cronCreator.createCrontabFromFile();
-        fileFacade.deleteFile(CRONTAB_TXT);
+//
+//        cronCreator.addLinesToCronTabFile(adhanCrons);
+//
+//        cronCreator.createCrontabFromFile();
+//        fileFacade.deleteFile(CRONTAB_TXT);
     }
 }
