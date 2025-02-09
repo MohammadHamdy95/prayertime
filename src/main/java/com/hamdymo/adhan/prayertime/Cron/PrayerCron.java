@@ -5,6 +5,7 @@ import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
 import lombok.AllArgsConstructor;
+import org.apache.commons.collections4.ListUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class PrayerCron {
     private FileFacade fileFacade;
     private DateFunctions dateFunctions;
 
-    public List<String> prayersCronCreator() throws Exception {
+    public List<String> athanCronCreator(DailyPrayerSchedule dailyPrayerSchedule) throws Exception {
         String city = fileFacade.getConfigCity();
         String date = dateFunctions.getDateTomorrow();
         DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
@@ -31,16 +32,24 @@ public class PrayerCron {
                 createPrayerCron(prayerTimes.getIshaTime(), false));
     }
 
-    public List<String> IqamahCronCreator() throws Exception {
+    public List<String> totalCronCreator() throws Exception {
         String city = fileFacade.getConfigCity();
         String date = dateFunctions.getDateTomorrow();
-        DailyPrayerSchedule prayerTimes = adhanFacade.getPrayerTimes(date, city);
+        DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(date, city);
+        List<String> athanCrons = athanCronCreator(dailyPrayerSchedule);
+        List<String> iqamahCrons = iqamahCronCreator(dailyPrayerSchedule);
+        return ListUtils.union(athanCrons, iqamahCrons);
+    }
+
+    public List<String> iqamahCronCreator(DailyPrayerSchedule dailyPrayerSchedule) throws Exception {
+        String city = fileFacade.getConfigCity();
+        String date = dateFunctions.getDateTomorrow();
         return Arrays.asList(
-                createIqamahCron(prayerTimes.getFajrTime(), true),
-                createIqamahCron(prayerTimes.getDhurTime(), false),
-                createIqamahCron(prayerTimes.getAsrTime(), false),
-                createIqamahCron(prayerTimes.getMaghribTime(), false),
-                createIqamahCron(prayerTimes.getIshaTime(), false));
+                createIqamahCron(dailyPrayerSchedule.getFajrTime(), true),
+                createIqamahCron(dailyPrayerSchedule.getDhurTime(), false),
+                createIqamahCron(dailyPrayerSchedule.getAsrTime(), false),
+                createIqamahCron(dailyPrayerSchedule.getMaghribTime(), false),
+                createIqamahCron(dailyPrayerSchedule.getIshaTime(), false));
     }
 
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
@@ -61,7 +70,7 @@ public class PrayerCron {
         String timings = createTimings(minute, hour);
         String exportCommand = getExportCommand();
         String playLocation = getPlayLocation();
-        String athanDirectory = getAthanDirectory(isFajr);
+        String athanDirectory = getIqamahDirectory();
         return String.format("""
                 %s %s && %s %s
                 """, timings, exportCommand, playLocation, athanDirectory);
@@ -86,7 +95,7 @@ public class PrayerCron {
         return root;
     }
 
-    private String getIqamahDirectory(boolean isFajr) {
+    private String getIqamahDirectory() {
         String root = System.getProperty("user.dir");
         root = root + "/assets/athaan";
         root = root + "/iqamah.mp3";

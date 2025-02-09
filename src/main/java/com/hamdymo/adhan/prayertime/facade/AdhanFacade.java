@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONObject;
+import org.springframework.cache.annotation.Cacheable;
 
 @AllArgsConstructor
 public class AdhanFacade {
@@ -18,6 +19,7 @@ public class AdhanFacade {
     private OkHttpClient okHttpClient;
     private Gson gson;
 
+    @Cacheable(value = "getPrayerTimes")
     public DailyPrayerSchedule getPrayerTimes(String date, String city) throws Exception {
         Request request = buildRequest(date, city);
         Call call = okHttpClient.newCall(request);

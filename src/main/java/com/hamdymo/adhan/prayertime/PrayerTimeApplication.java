@@ -7,9 +7,11 @@ import com.hamdymo.adhan.prayertime.logic.IqamahDecorator;
 import lombok.Data;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
+@EnableCaching
 public class PrayerTimeApplication {
 
     public static final String FILE_NAME = "Crontab.txt";
