@@ -109,7 +109,7 @@ public class PrayerCron {
         if (isFajr) {
             root = root + "/fajr.mp3";
         } else {
-            root = root + "/athaan.mp3";
+            root = root + "/athaan.wav";
         }
         return root;
     }
