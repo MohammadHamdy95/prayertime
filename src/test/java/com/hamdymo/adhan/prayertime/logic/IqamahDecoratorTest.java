@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -67,11 +67,11 @@ class IqamahDecoratorTest {
 
         DailyPrayerSchedule result = iqamahDecorator.addIqamahTimesToSchedule(dailyPrayerSchedule);
 
-        assertEquals(FAJR_TIME_HOUR_OFFSET,result.getFajrTimeIqamah());
-        assertEquals(DHUR_TIME_HOUR_OFFSET,result.getDhurTimeIqamah());
-        assertEquals(ASR_TIME_HOUR_OFFSET,result.getAsrTimeIqamah());
-        assertEquals(MAGHRIB_TIME_HOUR_OFFSET,result.getMaghribTimeIqamah());
-        assertEquals(ISHA_TIME_HOUR_OFFSET,result.getIshaTimeIqamah());
+        assertEquals(FAJR_TIME_HOUR_OFFSET, result.getFajrTimeIqamah());
+        assertEquals(DHUR_TIME_HOUR_OFFSET, result.getDhurTimeIqamah());
+        assertEquals(ASR_TIME_HOUR_OFFSET, result.getAsrTimeIqamah());
+        assertEquals(MAGHRIB_TIME_HOUR_OFFSET, result.getMaghribTimeIqamah());
+        assertEquals(ISHA_TIME_HOUR_OFFSET, result.getIshaTimeIqamah());
 
         verify(dateFunctions, times(1)).addMinutesToHourMinuteString(dailyPrayerSchedule.getFajrTime(), iqamahOffset.getFajrIqamahOffset());
         verify(dateFunctions, times(1)).addMinutesToHourMinuteString(dailyPrayerSchedule.getDhurTime(), iqamahOffset.getDhurIqamahOffset());

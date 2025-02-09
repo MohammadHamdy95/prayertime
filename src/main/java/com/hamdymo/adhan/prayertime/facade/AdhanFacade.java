@@ -34,11 +34,10 @@ public class AdhanFacade {
 
 
     private Request buildRequest(String date, String city) {
-        Request request = new Request.Builder()
+        return new Request.Builder()
                 .url(buildUrl(date, city))
                 .get()
                 .build();
-        return request;
     }
 
     private String buildUrl(String date, String city) {
