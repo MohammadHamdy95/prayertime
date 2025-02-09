@@ -10,8 +10,9 @@ import org.joda.time.format.DateTimeFormatter;
 @AllArgsConstructor
 public class DateFunctions {
     public static final String SAMPLE_DATE = "01-21-1995 11:18:00";
-    public static final String NUMBER = "0";
+    public static final String ZERO = "0";
     public static final DateTimeFormatter FORMATTER = DateTimeFormat.forPattern("MM-dd-yyyy HH:mm:ss");
+    public static final int TEN = 10;
     private FileFacade fileFacade;
 
     /**
@@ -39,8 +40,8 @@ public class DateFunctions {
         String sampleDate = setTimeOfDayToString(SAMPLE_DATE, hourMinute);
         DateTime dateTime = FORMATTER.parseDateTime(sampleDate);
         DateTime revive = dateTime.plusMinutes(minutesToAdd);
-        String betterHour = revive.getHourOfDay() < 10 ? NUMBER +revive.getHourOfDay() : String.valueOf(revive.getHourOfDay());
-        String betterMinute = revive.getMinuteOfHour() < 10 ? NUMBER +revive.getMinuteOfHour() : String.valueOf(revive.getMinuteOfHour());
+        String betterHour = revive.getHourOfDay() < TEN ? ZERO +revive.getHourOfDay() : String.valueOf(revive.getHourOfDay());
+        String betterMinute = revive.getMinuteOfHour() < TEN ? ZERO +revive.getMinuteOfHour() : String.valueOf(revive.getMinuteOfHour());
 
         return String.format("%s:%s",betterHour, betterMinute);
     }
