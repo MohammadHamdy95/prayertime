@@ -83,9 +83,7 @@ public class PrayerCron {
     }
 
     private String createIqamahCron(String time, int offset) throws IOException {
-        System.out.println(time);
         time = dateFunctions.addMinutesToHourMinuteString(time, offset);
-        System.out.println(time);
         String hour = time.substring(0, 2);
         String minute = time.substring(3);
         String timings = createTimings(minute, hour);
