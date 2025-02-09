@@ -107,7 +107,7 @@ public class PrayerCron {
         String root = System.getProperty("user.dir");
         root = root + "/assets/athaan";
         if (isFajr) {
-            root = root + "/fajr.mp3";
+            root = root + "/fajr.wav";
         } else {
             root = root + "/athaan.wav";
         }
