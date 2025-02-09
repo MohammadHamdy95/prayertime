@@ -27,12 +27,12 @@ public class PrayerApplicationController {
         System.out.println(adhanCrons);
 
         //Now we want to add each cronjob
-//        for (String cron : adhanCrons) {
-//            cronCreator.addCronJobToContabFile(cron);
-//        }
-//
-//        cronCreator.addRerunCronjob();
-//        cronCreator.createCrontabFromFile();
-//        fileFacade.deleteFile(CRONTAB_TXT);
+        for (String cron : adhanCrons) {
+            cronCreator.addCronJobToContabFile(cron);
+        }
+
+        cronCreator.addRerunCronjob();
+        cronCreator.createCrontabFromFile();
+        fileFacade.deleteFile(CRONTAB_TXT);
     }
 }
