@@ -21,7 +21,7 @@ public class PrayerTimeApplication {
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
         IqamahDecorator iqamahDecorator = apc.getBean(IqamahDecorator.class);
         DateFunctions dateFunctions = apc.getBean(DateFunctions.class);
-//        prayerApplicationController.run();
+        prayerApplicationController.run();
 //        iqamahDecorator.addIqamahTimesToSchedule(null);
 //        dateFunctions.setTimeOfDayToString();
     }

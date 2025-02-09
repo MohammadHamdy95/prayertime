@@ -1,6 +1,7 @@
 package com.hamdymo.adhan.prayertime.Cron;
 
 import com.hamdymo.adhan.prayertime.domain.model.DailyPrayerSchedule;
+import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
@@ -43,13 +44,14 @@ public class PrayerCron {
 
     public List<String> iqamahCronCreator(DailyPrayerSchedule dailyPrayerSchedule) throws Exception {
         String city = fileFacade.getConfigCity();
+        IqamahOffset iqamahOffset = fileFacade.getIqamahOffsetConfig();
         String date = dateFunctions.getDateTomorrow();
         return Arrays.asList(
-                createIqamahCron(dailyPrayerSchedule.getFajrTime(), true),
-                createIqamahCron(dailyPrayerSchedule.getDhurTime(), false),
-                createIqamahCron(dailyPrayerSchedule.getAsrTime(), false),
-                createIqamahCron(dailyPrayerSchedule.getMaghribTime(), false),
-                createIqamahCron(dailyPrayerSchedule.getIshaTime(), false));
+                createIqamahCron(dailyPrayerSchedule.getFajrTime(), iqamahOffset.getFajrIqamahOffset()),
+                createIqamahCron(dailyPrayerSchedule.getDhurTime(), iqamahOffset.getDhurIqamahOffset()),
+                createIqamahCron(dailyPrayerSchedule.getAsrTime(), iqamahOffset.getAsrTimeIqamahOffset()),
+                createIqamahCron(dailyPrayerSchedule.getMaghribTime(), iqamahOffset.getMaghribIqamahOffset()),
+                createIqamahCron(dailyPrayerSchedule.getIshaTime(), iqamahOffset.getMaghribIqamahOffset()));
     }
 
     private String createPrayerCron(String time, boolean isFajr) throws IOException {
@@ -64,7 +66,10 @@ public class PrayerCron {
                 """, timings, exportCommand, playLocation, athanDirectory);
     }
 
-    private String createIqamahCron(String time, boolean isFajr) throws IOException {
+    private String createIqamahCron(String time, int offset) throws IOException {
+        System.out.println(time);
+        time = dateFunctions.addMinutesToHourMinuteString(time, offset);
+        System.out.println(time);
         String hour = time.substring(0, 2);
         String minute = time.substring(3);
         String timings = createTimings(minute, hour);

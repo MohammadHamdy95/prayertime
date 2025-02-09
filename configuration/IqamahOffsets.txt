@@ -1,7 +1,7 @@
 {
-"Fajr Iqamah Offset":10,
-"Dhuhr Iqamah Offset":10,
-"Asr Iqamah Offset":10,
-"Maghrib Iqamah Offset":10,
-"Isha Iqamah Offset":10
+"Fajr Iqamah Offset":45,
+"Dhuhr Iqamah Offset":15,
+"Asr Iqamah Offset":15,
+"Maghrib Iqamah Offset":15,
+"Isha Iqamah Offset":15
 }
