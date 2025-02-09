@@ -38,7 +38,10 @@ public class DateFunctions {
         String sampleDate = setTimeOfDayToString(SAMPLE_DATE, hourMinute);
         DateTime dateTime = formatter.parseDateTime(sampleDate);
         DateTime revive = dateTime.plusMinutes(minutesToAdd);
-        return String.format("%s:%s",revive.getHourOfDay(), revive.getMinuteOfHour());
+        String betterHour = revive.getHourOfDay() < 10 ? "0"+revive.getHourOfDay() : String.valueOf(revive.getHourOfDay());
+        String betterMinute = revive.getMinuteOfHour() < 10 ? "0"+revive.getMinuteOfHour() : String.valueOf(revive.getMinuteOfHour());
+
+        return String.format("%s:%s",betterHour, betterMinute);
     }
 
     /**

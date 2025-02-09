@@ -87,7 +87,7 @@ public class FileFacade {
         return null;
     }
 
-    public IqamahOffset getIqamahOffsetConfiig() {
+    public IqamahOffset getIqamahOffsetConfig() {
         try (FileReader reader = new FileReader(getFilenamePath(IQAMAH_OFFSETS_TXT))) {
             return gson.fromJson(reader, IqamahOffset.class);
         } catch (IOException e) {

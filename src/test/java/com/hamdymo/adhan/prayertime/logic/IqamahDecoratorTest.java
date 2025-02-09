@@ -57,7 +57,7 @@ class IqamahDecoratorTest {
 
     @Test
     void addIqamahTimesToSchedule() {
-        when(fileFacade.getIqamahOffsetConfiig()).thenReturn(iqamahOffset);
+        when(fileFacade.getIqamahOffsetConfig()).thenReturn(iqamahOffset);
         when(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getFajrTime(), iqamahOffset.getFajrIqamahOffset())).thenReturn(FAJR_TIME_HOUR_OFFSET);
         when(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getDhurTime(), iqamahOffset.getDhurIqamahOffset())).thenReturn(DHUR_TIME_HOUR_OFFSET);
         when(dateFunctions.addMinutesToHourMinuteString(dailyPrayerSchedule.getAsrTime(), iqamahOffset.getAsrTimeIqamahOffset())).thenReturn(ASR_TIME_HOUR_OFFSET);

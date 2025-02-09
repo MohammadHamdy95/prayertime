@@ -23,15 +23,16 @@ public class PrayerApplicationController {
         fileFacade.createFile(CRONTAB_TXT);
 
         //Next we want to build all the cronjobs
-        List<String> adhanCrons = prayerCron.athanCronCreator();
+        List<String> adhanCrons = prayerCron.totalCronCreator();
+        System.out.println(adhanCrons);
 
         //Now we want to add each cronjob
-        for (String cron : adhanCrons) {
-            cronCreator.addCronJobToContabFile(cron);
-        }
-
-        cronCreator.addRerunCronjob();
-        cronCreator.createCrontabFromFile();
-        fileFacade.deleteFile(CRONTAB_TXT);
+//        for (String cron : adhanCrons) {
+//            cronCreator.addCronJobToContabFile(cron);
+//        }
+//
+//        cronCreator.addRerunCronjob();
+//        cronCreator.createCrontabFromFile();
+//        fileFacade.deleteFile(CRONTAB_TXT);
     }
 }

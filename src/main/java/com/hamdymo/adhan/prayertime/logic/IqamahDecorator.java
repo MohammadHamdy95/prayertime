@@ -5,9 +5,6 @@ import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import lombok.AllArgsConstructor;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @AllArgsConstructor
 public class IqamahDecorator {
     private DateFunctions dateFunctions;
@@ -24,7 +21,7 @@ public class IqamahDecorator {
     }
 
     private IqamahOffset getIqamahConfig() {
-        return fileFacade.getIqamahOffsetConfiig();
+        return fileFacade.getIqamahOffsetConfig();
     }
 
 }
