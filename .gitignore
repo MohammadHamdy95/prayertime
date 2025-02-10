@@ -35,4 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
-configuration/SecretConfig.txt
+configuration/SecretConfig.json
