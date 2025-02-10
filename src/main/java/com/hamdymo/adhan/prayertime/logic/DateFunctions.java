@@ -36,7 +36,7 @@ public class DateFunctions {
         int day = dt.getDayOfMonth();
         int month = dt.getMonthOfYear();
         int year = dt.getYear();
-        return String.format("%d/%d/%d",month, day, year);
+        return String.format("%d/%d/%d", month, day, year);
     }
 
     /**

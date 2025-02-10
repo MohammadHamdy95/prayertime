@@ -35,22 +35,22 @@ public class EmailLogic {
         String todaysDate = dateFunctions.getDateFriendly();
         DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(dateFunctions.getTodaysDateMMddYYYY(), user.getCity());
         return String.format("""
-                Hi there %s,
-                Here are the prayer times for the city of %s for %s:
-                
-                Fajr: %s
-                
-                Dhuhr: %s
-                
-                Asr: %s
-                
-                Maghrib: %s
-                
-                Isha: %s
-                
-                Salams
-                -Mail Robot
-                """, user.getName(), todaysDate,user.getCity(), dailyPrayerSchedule.getFajrTime(), dailyPrayerSchedule.getDhurTime(),
+                        Hi there %s,
+                        Here are the prayer times for the city of %s for %s:
+                        
+                        Fajr: %s
+                        
+                        Dhuhr: %s
+                        
+                        Asr: %s
+                        
+                        Maghrib: %s
+                        
+                        Isha: %s
+                        
+                        Salams
+                        -Mail Robot
+                        """, user.getName(), todaysDate, user.getCity(), dailyPrayerSchedule.getFajrTime(), dailyPrayerSchedule.getDhurTime(),
                 dailyPrayerSchedule.getAsrTime(), dailyPrayerSchedule.getMaghribTime(), dailyPrayerSchedule.getIshaTime());
     }
 }

@@ -26,6 +26,26 @@ public class EmailSender {
 
     private SecretConfig secretConfig;
 
+    private static Multipart getMultipart(SendEmailContext sendEmailContext) throws MessagingException, IOException {
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+        Multipart multipart = new MimeMultipart();
+        messageBodyPart.setText(sendEmailContext.getBody());
+
+        // create a second MimeBodyPart to hold the attachment
+        MimeBodyPart attachmentPart = new MimeBodyPart();
+        String directory = sendEmailContext.getFileDirectory();
+        // Specify the file path
+        if (directory != null) {
+            attachmentPart.attachFile(new File(directory));
+            multipart.addBodyPart(attachmentPart);   // Add attachment
+        }
+
+        // create a Multipart object to combine the message body and the attachment
+        multipart.addBodyPart(messageBodyPart);  // Add message body
+        return multipart;
+    }
+
     public void sendWithAttachments(SendEmailContext sendEmailContext) throws IOException, MessagingException {
 
         EmailConfig emailConfig = secretConfig.getEmailConfig();
@@ -66,25 +86,5 @@ public class EmailSender {
                 return new PasswordAuthentication(email, password);
             }
         });
-    }
-
-    private static Multipart getMultipart(SendEmailContext sendEmailContext) throws MessagingException, IOException {
-        MimeBodyPart messageBodyPart = new MimeBodyPart();
-
-        Multipart multipart = new MimeMultipart();
-        messageBodyPart.setText(sendEmailContext.getBody());
-
-        // create a second MimeBodyPart to hold the attachment
-        MimeBodyPart attachmentPart = new MimeBodyPart();
-        String directory = sendEmailContext.getFileDirectory();
-        // Specify the file path
-        if (directory!=null) {
-            attachmentPart.attachFile(new File(directory));
-            multipart.addBodyPart(attachmentPart);   // Add attachment
-        }
-
-        // create a Multipart object to combine the message body and the attachment
-        multipart.addBodyPart(messageBodyPart);  // Add message body
-        return multipart;
     }
 }
