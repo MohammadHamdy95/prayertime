@@ -1,10 +1,8 @@
 {
-  "users": [
+  "EmailConfig": [
     {
-      "name": "Mohammad Hamdy",
-      "city": "Bellevue",
-      "zip code": 98004,
-      "email": "America/Los_Angeles"
+      "send email": "moham1255@gmail.com",
+      "send email password": "test"
     }
   ]
 }
