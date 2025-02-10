@@ -12,4 +12,6 @@ public class Config {
 
     @SerializedName("timezone id")
     private String timezoneId;
+
+    private String email;
 }
