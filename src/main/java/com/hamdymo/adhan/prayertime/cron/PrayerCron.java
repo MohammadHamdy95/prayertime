@@ -57,7 +57,7 @@ public class PrayerCron {
         User user = User.builder()
                 .email(email)
                 .city(city)
-                .name("Mohammad Hamdy")
+                .name("Mo")
                 .timezoneId(timeZoneId)
                 .build();
         SendEmailContext sendEmailContext = SendEmailContext.builder()
