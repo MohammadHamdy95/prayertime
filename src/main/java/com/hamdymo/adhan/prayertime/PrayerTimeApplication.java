@@ -3,6 +3,9 @@ package com.hamdymo.adhan.prayertime;
 import com.hamdymo.adhan.prayertime.controller.PrayerApplicationController;
 import com.hamdymo.adhan.prayertime.domain.model.SecretConfig;
 import com.hamdymo.adhan.prayertime.domain.model.User;
+import com.hamdymo.adhan.prayertime.email.EmailLogic;
+import com.hamdymo.adhan.prayertime.email.EmailSender;
+import com.hamdymo.adhan.prayertime.email.SendEmailContext;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,10 +21,9 @@ public class PrayerTimeApplication {
     public static void main(String[] args) throws Exception {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
-        FileFacade fileFacade = apc.getBean(FileFacade.class);
 //        prayerApplicationController.run();
-//        fileFacade.getSecretConfig();
-        SecretConfig bean = apc.getBean(SecretConfig.class);
-        System.out.println(bean);
+        EmailLogic bean = apc.getBean(EmailLogic.class);
+        bean.sendUsersEmails();
+
     }
 }

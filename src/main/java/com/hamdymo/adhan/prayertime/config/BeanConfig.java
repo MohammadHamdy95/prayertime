@@ -6,6 +6,7 @@ import com.hamdymo.adhan.prayertime.cron.CronCreator;
 import com.hamdymo.adhan.prayertime.cron.PrayerCron;
 import com.hamdymo.adhan.prayertime.domain.model.EmailConfig;
 import com.hamdymo.adhan.prayertime.domain.model.SecretConfig;
+import com.hamdymo.adhan.prayertime.email.EmailLogic;
 import com.hamdymo.adhan.prayertime.email.EmailSender;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
@@ -76,5 +77,10 @@ public class BeanConfig {
     @Bean
     public EmailSender emailSender() throws IOException {
         return new EmailSender(secretConfig());
+    }
+
+    @Bean
+    public EmailLogic emailLogic() throws IOException {
+        return new EmailLogic(fileFacade(), adhanFacade(), dateFunctions(), emailSender());
     }
 }
