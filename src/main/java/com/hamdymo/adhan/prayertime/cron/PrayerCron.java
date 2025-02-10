@@ -3,11 +3,14 @@ package com.hamdymo.adhan.prayertime.cron;
 import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.domain.model.DailyPrayerSchedule;
 import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
+import com.hamdymo.adhan.prayertime.domain.model.User;
 import com.hamdymo.adhan.prayertime.email.EmailSender;
+import com.hamdymo.adhan.prayertime.email.SendEmailContext;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
 import com.hamdymo.adhan.prayertime.logic.IqamahDecorator;
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 
 import java.io.BufferedReader;
@@ -45,9 +48,52 @@ public class PrayerCron {
         return crons;
     }
 
-    private void sendEmail(DailyPrayerSchedule dailyPrayerSchedule) {
+    private void sendEmail(DailyPrayerSchedule dailyPrayerSchedule) throws MessagingException, IOException {
         iqamahDecorator.addIqamahTimesToSchedule(dailyPrayerSchedule);
+        String email = fileFacade.getConfigFile().getEmail();
+        String city = fileFacade.getConfigCity();
+        String timeZoneId = fileFacade.getConfigFile().getTimezoneId();
+        User user = User.builder()
+                .email(email)
+                .city(city)
+                .name("Mohammad Hamdy")
+                .timezoneId(timeZoneId)
+                .build();
+        SendEmailContext sendEmailContext = SendEmailContext.builder()
+                .subject("Your Prayer Summary")
+                .body(buildBody(dailyPrayerSchedule, user))
+                .build();
+        emailSender.sendWithAttachments(sendEmailContext);
         System.out.println(dailyPrayerSchedule);
+    }
+
+    private String buildBody(DailyPrayerSchedule dailyPrayerSchedule, User user) {
+        String test = String.format("""
+                Hi %s,
+                we have completed generation of your Alarms!
+                In %s for %s times are as follows:
+                
+                Fajr: %s
+                Fajr Iqamah: %s
+                
+                Dhuhr: %s
+                Dhuhr Iqamah: %s
+                
+                Asr: %s
+                Asr Iqamah: %s
+                
+                Maghrib: %s
+                Maghrib Iqamah: %s
+                
+                Isha: %s
+                Isha Iqamah %s
+                
+                """,user.getName(), user.getCity(), dateFunctions.getDateFriendly(), dailyPrayerSchedule.getFajrTime(),
+                dailyPrayerSchedule.getFajrTimeIqamah(), dailyPrayerSchedule.getDhurTime(), dailyPrayerSchedule.getDhurTimeIqamah(),
+                dailyPrayerSchedule.getAsrTime(), dailyPrayerSchedule.getAsrTimeIqamah(), dailyPrayerSchedule.getMaghribTime(), dailyPrayerSchedule.getMaghribTimeIqamah(),
+                dailyPrayerSchedule.getIshaTime(), dailyPrayerSchedule.getIshaTimeIqamah());
+
+        return test;
     }
 
     private CronSchedule createCrons(List<String> athanCrons, List<String> iqamahCrons) {
