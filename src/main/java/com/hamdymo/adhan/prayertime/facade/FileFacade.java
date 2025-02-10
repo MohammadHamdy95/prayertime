@@ -3,8 +3,12 @@ package com.hamdymo.adhan.prayertime.facade;
 import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.domain.model.Config;
 import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
+import com.hamdymo.adhan.prayertime.domain.model.User;
 import lombok.AllArgsConstructor;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,11 +16,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @AllArgsConstructor
 public class FileFacade {
     public static final String CONFIG_TXT = "Config.txt";
     public static final String IQAMAH_OFFSETS_TXT = "IqamahOffsets.txt";
+    public static final String USERS_JSON = "Users.json";
+    public static final String USERS = "users";
     private Gson gson;
 
     /**
@@ -94,5 +104,19 @@ public class FileFacade {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Map<String,User> getUsers() throws IOException {
+        String filenamePath = getFilenamePath(USERS_JSON);
+        Path path = Paths.get(filenamePath);
+        String json = Files.readString(path);
+        JSONObject test = new JSONObject(json);
+        JSONArray cfDatabase  = test.getJSONArray(USERS);
+        Map<String, User> collect = IntStream
+                .range(0, cfDatabase.length())
+                .mapToObj(cfDatabase::getJSONObject)
+                .map(cfCustomer -> gson.fromJson(String.valueOf(cfCustomer), User.class))
+                .collect(Collectors.toMap(User::getName, cfCustomer -> cfCustomer));
+        return collect;
     }
 }

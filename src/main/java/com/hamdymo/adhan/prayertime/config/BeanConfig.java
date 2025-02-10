@@ -1,9 +1,9 @@
-package com.hamdymo.adhan.prayertime.Config;
+package com.hamdymo.adhan.prayertime.config;
 
 import com.google.gson.Gson;
-import com.hamdymo.adhan.prayertime.Controller.PrayerApplicationController;
-import com.hamdymo.adhan.prayertime.Cron.CronCreator;
-import com.hamdymo.adhan.prayertime.Cron.PrayerCron;
+import com.hamdymo.adhan.prayertime.controller.PrayerApplicationController;
+import com.hamdymo.adhan.prayertime.cron.CronCreator;
+import com.hamdymo.adhan.prayertime.cron.PrayerCron;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
