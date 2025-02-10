@@ -1,4 +1,4 @@
-package com.hamdymo.adhan.prayertime.Cron;
+package com.hamdymo.adhan.prayertime.cron;
 
 import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.domain.model.DailyPrayerSchedule;

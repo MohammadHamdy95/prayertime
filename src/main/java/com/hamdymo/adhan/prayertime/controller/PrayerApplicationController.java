@@ -1,7 +1,7 @@
-package com.hamdymo.adhan.prayertime.Controller;
+package com.hamdymo.adhan.prayertime.controller;
 
-import com.hamdymo.adhan.prayertime.Cron.CronCreator;
-import com.hamdymo.adhan.prayertime.Cron.PrayerCron;
+import com.hamdymo.adhan.prayertime.cron.CronCreator;
+import com.hamdymo.adhan.prayertime.cron.PrayerCron;
 import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import lombok.AllArgsConstructor;

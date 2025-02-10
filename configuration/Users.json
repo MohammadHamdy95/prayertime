@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "name": "test",
-      "city": "San Diego",
-      "timezoneId": "America/Los_Angeles",
-      "zip code": 92130,
-      "email": "you@example.com"
-    },
-    {
       "name": "Mohammad Hamdy",
       "city": "Bellevue",
       "zip code": 98004,
