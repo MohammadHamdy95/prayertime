@@ -28,6 +28,13 @@ public class DateFunctions {
         return generateAPIDate(day, month, year);
     }
 
+    public String getDateFriendly() {
+        String timezoneId = fileFacade.getConfigFile().getTimezoneId();
+        DateTimeZone zone = DateTimeZone.forID(timezoneId);
+        DateTime dt = new DateTime(zone);
+        return dt.toString();
+    }
+
     /**
      * @return String of data looks like "22-12-2024"
      */
