@@ -29,5 +29,8 @@ public class PrayerApplicationController {
 
         cronCreator.createCrontabFromFile();
         fileFacade.deleteFile(CRONTAB_TXT);
+
+        //Send email
+
     }
 }
