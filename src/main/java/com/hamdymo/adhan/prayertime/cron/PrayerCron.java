@@ -69,28 +69,28 @@ public class PrayerCron {
 
     private String buildBody(DailyPrayerSchedule dailyPrayerSchedule, User user) {
         String test = String.format("""
-                Hi %s,
-                we have completed generation of your Alarms!
-                In %s for %s times are as follows:
-                
-                Fajr: %s
-                Fajr Iqamah: %s
-                
-                Dhuhr: %s
-                Dhuhr Iqamah: %s
-                
-                Asr: %s
-                Asr Iqamah: %s
-                
-                Maghrib: %s
-                Maghrib Iqamah: %s
-                
-                Isha: %s
-                Isha Iqamah %s
-                
-                -Best Regards
-                
-                """,user.getName(), user.getCity(), dateFunctions.getDateFriendly(), dailyPrayerSchedule.getFajrTime(),
+                        Hi %s,
+                        we have completed generation of your Alarms!
+                        In %s for %s times are as follows:
+                        
+                        Fajr: %s
+                        Fajr Iqamah: %s
+                        
+                        Dhuhr: %s
+                        Dhuhr Iqamah: %s
+                        
+                        Asr: %s
+                        Asr Iqamah: %s
+                        
+                        Maghrib: %s
+                        Maghrib Iqamah: %s
+                        
+                        Isha: %s
+                        Isha Iqamah %s
+                        
+                        -Best Regards
+                        
+                        """, user.getName(), user.getCity(), dateFunctions.getDateFriendly(), dailyPrayerSchedule.getFajrTime(),
                 dailyPrayerSchedule.getFajrTimeIqamah(), dailyPrayerSchedule.getDhurTime(), dailyPrayerSchedule.getDhurTimeIqamah(),
                 dailyPrayerSchedule.getAsrTime(), dailyPrayerSchedule.getAsrTimeIqamah(), dailyPrayerSchedule.getMaghribTime(), dailyPrayerSchedule.getMaghribTimeIqamah(),
                 dailyPrayerSchedule.getIshaTime(), dailyPrayerSchedule.getIshaTimeIqamah());

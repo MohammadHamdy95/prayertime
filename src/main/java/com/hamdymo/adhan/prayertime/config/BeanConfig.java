@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.controller.PrayerApplicationController;
 import com.hamdymo.adhan.prayertime.cron.CronCreator;
 import com.hamdymo.adhan.prayertime.cron.PrayerCron;
-import com.hamdymo.adhan.prayertime.domain.model.EmailConfig;
 import com.hamdymo.adhan.prayertime.domain.model.SecretConfig;
 import com.hamdymo.adhan.prayertime.email.EmailLogic;
 import com.hamdymo.adhan.prayertime.email.EmailSender;

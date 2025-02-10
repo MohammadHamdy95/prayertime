@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.cache.annotation.Cacheable;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +18,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -109,12 +107,12 @@ public class FileFacade {
         return null;
     }
 
-    public Map<String,User> getUsers() throws IOException {
+    public Map<String, User> getUsers() throws IOException {
         String filenamePath = getFilenamePath(USERS_JSON);
         Path path = Paths.get(filenamePath);
         String json = Files.readString(path);
         JSONObject test = new JSONObject(json);
-        JSONArray cfDatabase  = test.getJSONArray(USERS);
+        JSONArray cfDatabase = test.getJSONArray(USERS);
         Map<String, User> collect = IntStream
                 .range(0, cfDatabase.length())
                 .mapToObj(cfDatabase::getJSONObject)
