@@ -66,7 +66,6 @@ public class PrayerCron {
                 .body(buildBody(dailyPrayerSchedule, user))
                 .build();
         emailSender.sendWithAttachments(sendEmailContext);
-        System.out.println(dailyPrayerSchedule);
     }
 
     private String buildBody(DailyPrayerSchedule dailyPrayerSchedule, User user) {
