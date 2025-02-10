@@ -55,12 +55,12 @@ public class BeanConfig {
     }
 
     @Bean
-    public PrayerCron prayerCron() {
-        return new PrayerCron(cronCreator(), adhanFacade(), fileFacade(), dateFunctions());
+    public PrayerCron prayerCron() throws IOException {
+        return new PrayerCron(cronCreator(), adhanFacade(), fileFacade(), dateFunctions(), emailSender(), iqamahDecorator());
     }
 
     @Bean
-    public PrayerApplicationController prayerApplicationController() {
+    public PrayerApplicationController prayerApplicationController() throws IOException {
         return new PrayerApplicationController(fileFacade(), cronCreator(), prayerCron());
     }
 

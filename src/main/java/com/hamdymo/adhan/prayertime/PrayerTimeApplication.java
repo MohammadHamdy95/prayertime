@@ -21,9 +21,9 @@ public class PrayerTimeApplication {
     public static void main(String[] args) throws Exception {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
-//        prayerApplicationController.run();
-        EmailLogic bean = apc.getBean(EmailLogic.class);
-        bean.sendUsersEmails();
+        prayerApplicationController.run();
+//        EmailLogic bean = apc.getBean(EmailLogic.class);
+//        bean.sendUsersEmails();
 
     }
 }
