@@ -1,6 +1,7 @@
 package com.hamdymo.adhan.prayertime;
 
 import com.hamdymo.adhan.prayertime.controller.PrayerApplicationController;
+import com.hamdymo.adhan.prayertime.domain.model.SecretConfig;
 import com.hamdymo.adhan.prayertime.domain.model.User;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,10 @@ public class PrayerTimeApplication {
     public static void main(String[] args) throws Exception {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
-        prayerApplicationController.run();
+        FileFacade fileFacade = apc.getBean(FileFacade.class);
+//        prayerApplicationController.run();
+//        fileFacade.getSecretConfig();
+        SecretConfig bean = apc.getBean(SecretConfig.class);
+        System.out.println(bean);
     }
 }

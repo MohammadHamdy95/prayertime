@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.controller.PrayerApplicationController;
 import com.hamdymo.adhan.prayertime.cron.CronCreator;
 import com.hamdymo.adhan.prayertime.cron.PrayerCron;
+import com.hamdymo.adhan.prayertime.domain.model.EmailConfig;
+import com.hamdymo.adhan.prayertime.domain.model.SecretConfig;
+import com.hamdymo.adhan.prayertime.email.EmailSender;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
@@ -11,6 +14,8 @@ import com.hamdymo.adhan.prayertime.logic.IqamahDecorator;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.io.IOException;
 
 /**
  * Here, all the beans of greatness are configured and injected!
@@ -61,5 +66,15 @@ public class BeanConfig {
     @Bean
     public IqamahDecorator iqamahDecorator() {
         return new IqamahDecorator(dateFunctions(), fileFacade());
+    }
+
+    @Bean
+    public SecretConfig secretConfig() throws IOException {
+        return fileFacade().getSecretConfig();
+    }
+
+    @Bean
+    public EmailSender emailSender() throws IOException {
+        return new EmailSender(secretConfig());
     }
 }

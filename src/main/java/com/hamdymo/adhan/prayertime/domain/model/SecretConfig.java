@@ -5,5 +5,7 @@ import lombok.Data;
 
 @Data
 public class SecretConfig {
+
+    @SerializedName("EmailConfig")
     private EmailConfig emailConfig;
 }

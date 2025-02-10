@@ -123,19 +123,11 @@ public class FileFacade {
         return collect;
     }
 
-    @Cacheable
+    @Cacheable(value = "config")
     public SecretConfig getSecretConfig() throws IOException {
         String filenamePath = getFilenamePath(SECRET_CONFIG_JSON);
         Path path = Paths.get(filenamePath);
         String json = Files.readString(path);
-        JSONObject test = new JSONObject(json);
-        System.out.println(test);
-//        JSONArray cfDatabase  = test.getJSONArray(USERS);
-//        Map<String, User> collect = IntStream
-//                .range(0, cfDatabase.length())
-//                .mapToObj(cfDatabase::getJSONObject)
-//                .map(cfCustomer -> gson.fromJson(String.valueOf(cfCustomer), User.class))
-//                .collect(Collectors.toMap(User::getName, cfCustomer -> cfCustomer));
-//        return collect;
+        return gson.fromJson(json, SecretConfig.class);
     }
 }
