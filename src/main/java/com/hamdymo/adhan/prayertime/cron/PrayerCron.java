@@ -52,7 +52,6 @@ public class PrayerCron {
         iqamahDecorator.addIqamahTimesToSchedule(dailyPrayerSchedule);
         String email = fileFacade.getConfigFile().getEmail();
         String city = fileFacade.getConfigCity();
-        System.out.println(email);
         String timeZoneId = fileFacade.getConfigFile().getTimezoneId();
         User user = User.builder()
                 .email(email)
@@ -88,6 +87,8 @@ public class PrayerCron {
                 
                 Isha: %s
                 Isha Iqamah %s
+                
+                -Best Regards
                 
                 """,user.getName(), user.getCity(), dateFunctions.getDateFriendly(), dailyPrayerSchedule.getFajrTime(),
                 dailyPrayerSchedule.getFajrTimeIqamah(), dailyPrayerSchedule.getDhurTime(), dailyPrayerSchedule.getDhurTimeIqamah(),
