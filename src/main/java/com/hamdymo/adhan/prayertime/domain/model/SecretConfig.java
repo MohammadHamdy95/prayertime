@@ -5,11 +5,5 @@ import lombok.Data;
 
 @Data
 public class SecretConfig {
-    private String city;
-
-    @SerializedName("zip code")
-    private String zipCode;
-
-    @SerializedName("timezone id")
-    private String timezoneId;
+    pr
 }
