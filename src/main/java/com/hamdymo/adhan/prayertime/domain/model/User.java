@@ -7,9 +7,13 @@ import lombok.Data;
 public class User {
     private String name;
 
-    @SerializedName("zip code")
-    private String zipCode;
+    private String city;
 
     @SerializedName("timezone id")
     private String timezoneId;
+
+    @SerializedName("zip code")
+    private String zipCode;
+
+    private String email;
 }
