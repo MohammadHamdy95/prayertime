@@ -5,5 +5,5 @@ import lombok.Data;
 
 @Data
 public class SecretConfig {
-    pr
+    private EmailConfig emailConfig;
 }

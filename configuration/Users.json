@@ -1,10 +1,8 @@
 {
-  "users": [
+  "EmailConfig": [
     {
-      "name": "Mohammad Hamdy",
-      "city": "Bellevue",
-      "zip code": 98004,
-      "email": "America/Los_Angeles"
+      "send email": "you@example.com",
+      "send email password": "test"
     }
   ]
 }
