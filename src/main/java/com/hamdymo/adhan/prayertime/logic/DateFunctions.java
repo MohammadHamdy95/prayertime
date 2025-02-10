@@ -31,7 +31,7 @@ public class DateFunctions {
     /**
      * @return String of data looks like "22-12-2024"
      */
-    public String getTodaysDate() {
+    public String getTodaysDateMMddYYYY() {
         String timezoneId = fileFacade.getConfigFile().getTimezoneId();
         DateTimeZone zone = DateTimeZone.forID(timezoneId);
         DateTime dt = new DateTime(zone);
