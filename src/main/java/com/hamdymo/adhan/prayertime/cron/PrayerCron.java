@@ -32,7 +32,7 @@ public class PrayerCron {
 
     public CronSchedule totalCronCreator() throws Exception {
         String city = fileFacade.getConfigCity();
-        String date = dateFunctions.getTodaysDate();
+        String date = dateFunctions.getTodaysDateMMddYYYY();
         DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(date, city);
         List<String> athanCrons = athanCronCreator(dailyPrayerSchedule);
         List<String> iqamahCrons = iqamahCronCreator(dailyPrayerSchedule);

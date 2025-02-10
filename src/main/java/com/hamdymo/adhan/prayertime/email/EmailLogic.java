@@ -7,7 +7,6 @@ import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
 import lombok.AllArgsConstructor;
 
-import java.io.IOException;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -32,7 +31,19 @@ public class EmailLogic {
     }
 
     private String buildBody(User user) throws Exception {
-        DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(dateFunctions.getTodaysDate(), user.getCity());
-        return dailyPrayerSchedule.toString();
+        String todaysDate = dateFunctions.getTodaysDateMMddYYYY();
+        DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(dateFunctions.getTodaysDateMMddYYYY(), user.getCity());
+        return String.format("""
+                Hi there %s,
+                Here are the prayer times for the city of %s for %s:
+                Fajr: %s
+                Dhuhr: %s
+                Asr: %s
+                Maghrib: %s
+                Isha: %s
+                Salams
+                -Mail Robot
+                """, user.getName(), todaysDate,user.getCity(), dailyPrayerSchedule.getFajrTime(), dailyPrayerSchedule.getDhurTime(),
+                dailyPrayerSchedule.getAsrTime(), dailyPrayerSchedule.getMaghribTime(), dailyPrayerSchedule.getIshaTime());
     }
 }
