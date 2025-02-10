@@ -120,6 +120,11 @@ public class CronCreator {
     }
 
     public void createCrontabFromFile() throws IOException, InterruptedException {
+        String os = System.getProperty("os.name");
+        System.out.println("We are not mac, so we are skipping adding cronjobs");
+        if (os.contains("Mac")) {
+            return;
+        }
 
         String filePath = fileFacade.getFilenamePath(CRONTAB_TXT);
         StringBuilder cronEntries = new StringBuilder();
