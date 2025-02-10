@@ -17,15 +17,6 @@ public class PrayerTimeApplication {
     public static void main(String[] args) throws Exception {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
-//        prayerApplicationController.run();
-        FileFacade bean = apc.getBean(FileFacade.class);
-
-        Map<String, User> users = bean.getUsers();
-        for (Map.Entry<String, User> entry : users.entrySet()) {
-            String key = entry.getKey();
-            User value = entry.getValue();
-            System.out.println(key + ": " + value);
-        }
+        prayerApplicationController.run();
     }
-
 }
