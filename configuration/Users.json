@@ -1,8 +1,17 @@
 {
-  "EmailConfig": [
+  "users": [
     {
-      "send email": "moham1255@gmail.com",
-      "send email password": "test"
+      "name": "test",
+      "city": "San Diego",
+      "timezoneId": "America/Los_Angeles",
+      "zip code": 92130,
+      "email": "moham1255@gmail.com"
+    },
+    {
+      "name": "Mohammad Hamdy",
+      "city": "Bellevue",
+      "zip code": 98004,
+      "email": "moham1255@gmail.com"
     }
   ]
 }

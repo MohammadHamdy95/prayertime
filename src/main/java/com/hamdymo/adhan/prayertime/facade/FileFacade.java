@@ -3,10 +3,12 @@ package com.hamdymo.adhan.prayertime.facade;
 import com.google.gson.Gson;
 import com.hamdymo.adhan.prayertime.domain.model.Config;
 import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
+import com.hamdymo.adhan.prayertime.domain.model.SecretConfig;
 import com.hamdymo.adhan.prayertime.domain.model.User;
 import lombok.AllArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.io.File;
 import java.io.FileReader;
@@ -27,6 +29,7 @@ public class FileFacade {
     public static final String IQAMAH_OFFSETS_TXT = "IqamahOffsets.txt";
     public static final String USERS_JSON = "Users.json";
     public static final String USERS = "users";
+    public static final String SECRET_CONFIG_JSON = "SecretConfig.json";
     private Gson gson;
 
     /**
@@ -118,5 +121,21 @@ public class FileFacade {
                 .map(cfCustomer -> gson.fromJson(String.valueOf(cfCustomer), User.class))
                 .collect(Collectors.toMap(User::getName, cfCustomer -> cfCustomer));
         return collect;
+    }
+
+    @Cacheable
+    public SecretConfig getSecretConfig() throws IOException {
+        String filenamePath = getFilenamePath(SECRET_CONFIG_JSON);
+        Path path = Paths.get(filenamePath);
+        String json = Files.readString(path);
+        JSONObject test = new JSONObject(json);
+        System.out.println(test);
+//        JSONArray cfDatabase  = test.getJSONArray(USERS);
+//        Map<String, User> collect = IntStream
+//                .range(0, cfDatabase.length())
+//                .mapToObj(cfDatabase::getJSONObject)
+//                .map(cfCustomer -> gson.fromJson(String.valueOf(cfCustomer), User.class))
+//                .collect(Collectors.toMap(User::getName, cfCustomer -> cfCustomer));
+//        return collect;
     }
 }
