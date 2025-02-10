@@ -70,17 +70,21 @@ public class EmailSender {
 
     private static Multipart getMultipart(SendEmailContext sendEmailContext) throws MessagingException, IOException {
         MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+        Multipart multipart = new MimeMultipart();
         messageBodyPart.setText(sendEmailContext.getBody());
 
         // create a second MimeBodyPart to hold the attachment
         MimeBodyPart attachmentPart = new MimeBodyPart();
-        String directory = sendEmailContext.getFileDirectory(); // Specify the file path
-        attachmentPart.attachFile(new File(directory));
+        String directory = sendEmailContext.getFileDirectory();
+        // Specify the file path
+        if (directory!=null) {
+            attachmentPart.attachFile(new File(directory));
+            multipart.addBodyPart(attachmentPart);   // Add attachment
+        }
 
         // create a Multipart object to combine the message body and the attachment
-        Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(messageBodyPart);  // Add message body
-        multipart.addBodyPart(attachmentPart);   // Add attachment
         return multipart;
     }
 }
