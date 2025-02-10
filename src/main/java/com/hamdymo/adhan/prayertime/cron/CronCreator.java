@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class CronCreator {
 
     private static final String CRONTAB_TXT = "Crontab.txt";
+    public static final String MAC_OS_X = "Mac OS X";
     private FileFacade fileFacade;
 
     /**
@@ -121,8 +122,8 @@ public class CronCreator {
 
     public void createCrontabFromFile() throws IOException, InterruptedException {
         String os = System.getProperty("os.name");
-        System.out.println("We are not mac, so we are skipping adding cronjobs");
-        if (os.contains("Mac")) {
+        if (os.equals(MAC_OS_X)) {
+            System.out.printf("We are on mac, so we are skipping adding cronjobs OS: %s", os);
             return;
         }
 
