@@ -12,6 +12,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class EmailLogic {
 
+    public static final String DAILY_PRAYER_SCHEDULE = "Daily Prayer Schedule";
     private FileFacade fileFacade;
     private AdhanFacade adhanFacade;
     private DateFunctions dateFunctions;
@@ -24,23 +25,29 @@ public class EmailLogic {
             SendEmailContext sendEmailContext = SendEmailContext.builder()
                     .user(value)
                     .body(buildBody(value))
-                    .subject("test")
+                    .subject(DAILY_PRAYER_SCHEDULE)
                     .build();
             emailSender.sendWithAttachments(sendEmailContext);
         }
     }
 
     private String buildBody(User user) throws Exception {
-        String todaysDate = dateFunctions.getTodaysDateMMddYYYY();
+        String todaysDate = dateFunctions.getDateFriendly();
         DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(dateFunctions.getTodaysDateMMddYYYY(), user.getCity());
         return String.format("""
                 Hi there %s,
                 Here are the prayer times for the city of %s for %s:
+                
                 Fajr: %s
+                
                 Dhuhr: %s
+                
                 Asr: %s
+                
                 Maghrib: %s
+                
                 Isha: %s
+                
                 Salams
                 -Mail Robot
                 """, user.getName(), todaysDate,user.getCity(), dailyPrayerSchedule.getFajrTime(), dailyPrayerSchedule.getDhurTime(),

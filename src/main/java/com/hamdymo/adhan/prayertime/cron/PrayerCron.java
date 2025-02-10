@@ -3,9 +3,11 @@ package com.hamdymo.adhan.prayertime.cron;
 import com.hamdymo.adhan.prayertime.domain.model.CronSchedule;
 import com.hamdymo.adhan.prayertime.domain.model.DailyPrayerSchedule;
 import com.hamdymo.adhan.prayertime.domain.model.IqamahOffset;
+import com.hamdymo.adhan.prayertime.email.EmailSender;
 import com.hamdymo.adhan.prayertime.facade.AdhanFacade;
 import com.hamdymo.adhan.prayertime.facade.FileFacade;
 import com.hamdymo.adhan.prayertime.logic.DateFunctions;
+import com.hamdymo.adhan.prayertime.logic.IqamahDecorator;
 import lombok.AllArgsConstructor;
 
 import java.io.BufferedReader;
@@ -20,6 +22,8 @@ public class PrayerCron {
     private AdhanFacade adhanFacade;
     private FileFacade fileFacade;
     private DateFunctions dateFunctions;
+    private EmailSender emailSender;
+    private IqamahDecorator iqamahDecorator;
 
     public List<String> athanCronCreator(DailyPrayerSchedule prayerTimes) throws Exception {
         return Arrays.asList(
@@ -36,7 +40,14 @@ public class PrayerCron {
         DailyPrayerSchedule dailyPrayerSchedule = adhanFacade.getPrayerTimes(date, city);
         List<String> athanCrons = athanCronCreator(dailyPrayerSchedule);
         List<String> iqamahCrons = iqamahCronCreator(dailyPrayerSchedule);
-        return createCrons(athanCrons, iqamahCrons);
+        CronSchedule crons = createCrons(athanCrons, iqamahCrons);
+        sendEmail(dailyPrayerSchedule);
+        return crons;
+    }
+
+    private void sendEmail(DailyPrayerSchedule dailyPrayerSchedule) {
+        iqamahDecorator.addIqamahTimesToSchedule(dailyPrayerSchedule);
+        System.out.println(dailyPrayerSchedule);
     }
 
     private CronSchedule createCrons(List<String> athanCrons, List<String> iqamahCrons) {

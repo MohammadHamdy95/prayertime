@@ -12,6 +12,7 @@ public class DateFunctions {
     public static final String SAMPLE_DATE = "01-21-1995 11:18:00";
     public static final String ZERO = "0";
     public static final DateTimeFormatter FORMATTER = DateTimeFormat.forPattern("MM-dd-yyyy HH:mm:ss");
+    public static final DateTimeFormatter FRIENDLY = DateTimeFormat.forPattern("MM-dd-yyyy");
     public static final int TEN = 10;
     private FileFacade fileFacade;
 
@@ -32,7 +33,10 @@ public class DateFunctions {
         String timezoneId = fileFacade.getConfigFile().getTimezoneId();
         DateTimeZone zone = DateTimeZone.forID(timezoneId);
         DateTime dt = new DateTime(zone);
-        return dt.toString();
+        int day = dt.getDayOfMonth();
+        int month = dt.getMonthOfYear();
+        int year = dt.getYear();
+        return String.format("%d/%d/%d",month, day, year);
     }
 
     /**
