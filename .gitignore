@@ -36,3 +36,4 @@ out/
 ### VS Code ###
 .vscode/
 configuration/SecretConfig.json
+configuration/Users.json
