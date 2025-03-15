@@ -111,7 +111,7 @@ public class CronCreator {
         return root;
     }
 
-    private String getGradleLocation() throws IOException {
+    public String getGradleLocation() throws IOException {
         Runtime rt = Runtime.getRuntime();
         String[] commands = {"which", "gradle"};
         Process proc = rt.exec(commands);
