@@ -1,6 +1,7 @@
 package com.hamdymo.adhan.prayertime;
 
 import com.hamdymo.adhan.prayertime.controller.PrayerApplicationController;
+import com.hamdymo.adhan.prayertime.cron.CronCreator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -12,8 +13,13 @@ public class PrayerTimeApplication {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
-        PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
-        prayerApplicationController.run();
+//        PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
+//        prayerApplicationController.run();
+        CronCreator cronCreator = apc.getBean(CronCreator.class);
+        String gradleLocation = cronCreator.getGradleLocation();
+        System.out.println(gradleLocation);
+//        EmailLogic bean = apc.getBean(EmailLogic.class);
+//        bean.sendUsersEmails();
 
     }
 }
