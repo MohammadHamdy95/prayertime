@@ -15,11 +15,6 @@ public class PrayerTimeApplication {
         ApplicationContext apc = SpringApplication.run(PrayerTimeApplication.class);
         PrayerApplicationController prayerApplicationController = apc.getBean(PrayerApplicationController.class);
         prayerApplicationController.run();
-//        CronCreator cronCreator = apc.getBean(CronCreator.class);
-//        String gradleLocation = cronCreator.getGradleLocation();
-//        System.out.println(gradleLocation);
-//        EmailLogic bean = apc.getBean(EmailLogic.class);
-//        bean.sendUsersEmails();
 
     }
 }
