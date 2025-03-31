@@ -16,6 +16,7 @@ public class CronCreator {
 
     private static final String CRONTAB_TXT = "Crontab.txt";
     public static final String MAC_OS_X = "Mac OS X";
+    public static final String GRADLE_CMD_PREFIX = "/home/modev/.sdkman/candidates/gradle/current/bin/gradle";
     private FileFacade fileFacade;
 
     /**
@@ -112,12 +113,14 @@ public class CronCreator {
     }
 
     private String getGradleLocation() throws IOException {
+        //TODO: currently had to hardcode this to my value, but it can be tweaked.
         Runtime rt = Runtime.getRuntime();
         String[] commands = {"which", "gradle"};
         Process proc = rt.exec(commands);
         BufferedReader stdInput = new BufferedReader(new
                 InputStreamReader(proc.getInputStream()));
-        return stdInput.readLine();
+        String test = stdInput.readLine();
+        return GRADLE_CMD_PREFIX;
     }
 
     public void createCrontabFromFile() throws IOException, InterruptedException {
