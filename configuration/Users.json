@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "name": "MH",
-      "city": "San Diego",
-      "timezoneId": "America/Los_Angeles",
-      "zip code": 92130,
+      "name": "Example User",
+      "city": "Columbus",
+      "timezoneId": "America/New_York",
+      "zip code": 43215,
       "email": "you@example.com"
     }
   ]
